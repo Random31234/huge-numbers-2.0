@@ -27,7 +27,6 @@ layout_mode = 2
 offset_top = 520.0
 offset_right = 213.0
 offset_bottom = 648.0
-text = "tadsada"
 
 [node name="Button" type="Button" parent="Output System"]
 modulate = Color(0.768627, 0.768627, 0.768627, 1)
