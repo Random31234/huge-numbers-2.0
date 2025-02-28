@@ -70,7 +70,7 @@ layout_mode = 0
 offset_left = 618.0
 offset_right = 682.0
 offset_bottom = 32.0
-text = "11"
+text = "t"
 
 [node name="e text" type="RichTextLabel" parent="TabContainer/Edit stats/Create stats proper"]
 custom_minimum_size = Vector2(32, 0)
