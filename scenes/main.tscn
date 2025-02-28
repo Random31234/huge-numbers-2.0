@@ -56,9 +56,122 @@ current_tab = 0
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Create stats proper" type="Control" parent="TabContainer/Edit stats"]
+[node name="Create stats proper legacy" type="Control" parent="TabContainer/Edit stats"]
 layout_mode = 2
 anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+offset_bottom = -31.0
+
+[node name="mantissa" type="TextEdit" parent="TabContainer/Edit stats/Create stats proper legacy"]
+layout_mode = 0
+offset_left = 618.0
+offset_right = 682.0
+offset_bottom = 32.0
+
+[node name="e text" type="RichTextLabel" parent="TabContainer/Edit stats/Create stats proper legacy"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 0
+offset_left = 682.0
+offset_right = 714.0
+offset_bottom = 32.0
+text = "e"
+
+[node name="exponent" type="TextEdit" parent="TabContainer/Edit stats/Create stats proper legacy"]
+layout_mode = 0
+offset_left = 714.0
+offset_right = 810.0
+offset_bottom = 32.0
+
+[node name="Name" type="TextEdit" parent="TabContainer/Edit stats/Create stats proper legacy"]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 32.0
+offset_right = 810.0
+offset_bottom = 64.0
+
+[node name="Button" type="Button" parent="TabContainer/Edit stats/Create stats proper legacy"]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+layout_mode = 0
+offset_left = 616.0
+offset_top = 64.0
+offset_right = 810.0
+offset_bottom = 96.0
+text = "Press to create new stat"
+
+[node name="Manipulate stats legacy" type="Control" parent="TabContainer/Edit stats"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Stat selection" type="OptionButton" parent="TabContainer/Edit stats/Manipulate stats legacy"]
+layout_mode = 0
+offset_left = 621.0
+offset_top = 176.0
+offset_right = 813.0
+offset_bottom = 208.0
+
+[node name="e text" type="RichTextLabel" parent="TabContainer/Edit stats/Manipulate stats legacy"]
+layout_mode = 0
+offset_left = 705.0
+offset_top = 211.0
+offset_right = 716.0
+offset_bottom = 245.0
+text = "e"
+
+[node name="mantissa" type="TextEdit" parent="TabContainer/Edit stats/Manipulate stats legacy"]
+layout_mode = 0
+offset_left = 622.0
+offset_top = 209.0
+offset_right = 705.0
+offset_bottom = 241.0
+
+[node name="exponent" type="TextEdit" parent="TabContainer/Edit stats/Manipulate stats legacy"]
+layout_mode = 0
+offset_left = 717.0
+offset_top = 209.0
+offset_right = 813.0
+offset_bottom = 241.0
+
+[node name="Type of function" type="OptionButton" parent="TabContainer/Edit stats/Manipulate stats legacy"]
+layout_mode = 0
+offset_left = 621.0
+offset_top = 143.0
+offset_right = 813.0
+offset_bottom = 175.0
+item_count = 8
+popup/item_0/text = "Addition"
+popup/item_0/id = 0
+popup/item_1/text = "Subtraction"
+popup/item_1/id = 1
+popup/item_2/text = "Multiply"
+popup/item_2/id = 2
+popup/item_3/text = "Divide"
+popup/item_3/id = 3
+popup/item_4/text = "Exponentiate by"
+popup/item_4/id = 4
+popup/item_5/text = "Root by"
+popup/item_5/id = 5
+popup/item_6/text = "Set equal to"
+popup/item_6/id = 6
+popup/item_7/text = "Remove"
+popup/item_7/id = 7
+
+[node name="Button" type="Button" parent="TabContainer/Edit stats/Manipulate stats legacy"]
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+layout_mode = 0
+offset_left = 623.0
+offset_top = 246.0
+offset_right = 813.0
+offset_bottom = 277.0
+text = "Press to apply effect
+"
+
+[node name="Create stats proper" type="Control" parent="TabContainer/Edit stats"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
@@ -102,6 +215,7 @@ offset_bottom = 96.0
 text = "Press to create new stat"
 
 [node name="Manipulate stats" type="Control" parent="TabContainer/Edit stats"]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -518,6 +632,8 @@ text = "Delete math"
 
 [connection signal="button_down" from="Output System/Button" to="." method="printStats"]
 [connection signal="button_down" from="Termination button" to="." method="terminateSession"]
+[connection signal="button_down" from="TabContainer/Edit stats/Create stats proper legacy/Button" to="." method="create_stat"]
+[connection signal="button_down" from="TabContainer/Edit stats/Manipulate stats legacy/Button" to="." method="ModifyStatBase"]
 [connection signal="button_down" from="TabContainer/Edit stats/Create stats proper/Button" to="." method="create_stat"]
 [connection signal="button_down" from="TabContainer/Edit stats/Manipulate stats/Button" to="." method="ModifyStatBase"]
 [connection signal="button_down" from="TabContainer/maths/Create_edit_step_button" to="." method="createEditStep"]
