@@ -10,6 +10,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Print node" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextEdit" type="TextEdit" parent="Print node"]
+offset_top = 520.0
+offset_right = 213.0
+offset_bottom = 648.0
+
+[node name="Button" type="Button" parent="Print node"]
+modulate = Color(0.768627, 0.768627, 0.768627, 1)
+offset_left = 213.0
+offset_top = 520.0
+offset_right = 334.0
+offset_bottom = 648.0
+text = "Print stat"
+
 [node name="storage node" type="Node" parent="."]
 
 [node name="stats scroll container" type="ScrollContainer" parent="."]
@@ -23,28 +41,12 @@ scroll_deadzone = 1
 custom_minimum_size = Vector2(256, 2560)
 layout_mode = 2
 
-[node name="Output System" type="Node" parent="."]
-
-[node name="TextEdit" type="TextEdit" parent="Output System"]
-offset_top = 520.0
-offset_right = 213.0
-offset_bottom = 648.0
-
-[node name="Button" type="Button" parent="Output System"]
-modulate = Color(0.768627, 0.768627, 0.768627, 1)
-offset_left = 213.0
-offset_top = 520.0
-offset_right = 297.0
-offset_bottom = 648.0
-text = "Print Text"
-
 [node name="Termination button" type="Button" parent="."]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 256.0
-offset_top = 3.0
-offset_right = 320.0
-offset_bottom = 67.0
+offset_left = 1120.0
+offset_right = 1152.0
+offset_bottom = 32.0
 text = "X"
 
 [node name="TabContainer" type="TabContainer" parent="."]
@@ -407,6 +409,7 @@ offset_bottom = 252.0
 text = "delete var"
 
 [node name="calculations legacy" type="Control" parent="TabContainer/maths"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -483,25 +486,25 @@ popup/item_7/id = 7
 
 [node name="Create_edit_step_button" type="Button" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
-offset_left = 192.0
-offset_top = 32.0
-offset_right = 320.0
-offset_bottom = 64.0
+offset_top = 128.0
+offset_right = 128.0
+offset_bottom = 160.0
 text = "Edit Step"
 
 [node name="step selector" type="OptionButton" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
-offset_left = 192.0
-offset_right = 320.0
-offset_bottom = 32.0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 256.0
+offset_bottom = 160.0
 
 [node name="delete step" type="Button" parent="TabContainer/maths/calculations legacy"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 689.0
-offset_top = 585.0
-offset_right = 817.0
-offset_bottom = 617.0
+offset_left = 256.0
+offset_top = 128.0
+offset_right = 384.0
+offset_bottom = 160.0
 text = "delete step"
 
 [node name="Legacy input system2" type="Control" parent="TabContainer/maths/calculations legacy"]
@@ -557,6 +560,72 @@ offset_top = 32.0
 offset_right = 192.0
 offset_bottom = 64.0
 placeholder_text = "Number for input"
+
+[node name="calculations" type="Control" parent="TabContainer/maths"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Legacy input system2" type="Control" parent="TabContainer/maths/calculations"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="calculation button" type="Button" parent="TabContainer/maths/calculations/Legacy input system2"]
+custom_minimum_size = Vector2(192, 32)
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 32.0
+text = "Calculate"
+
+[node name="input mantissa" type="TextEdit" parent="TabContainer/maths/calculations/Legacy input system2"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 90.0
+offset_bottom = 64.0
+
+[node name="input e" type="RichTextLabel" parent="TabContainer/maths/calculations/Legacy input system2"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 32.0
+offset_right = 102.0
+offset_bottom = 64.0
+text = "e"
+scroll_active = false
+
+[node name="input exponent" type="TextEdit" parent="TabContainer/maths/calculations/Legacy input system2"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 32.0
+offset_right = 197.0
+offset_bottom = 64.0
+
+[node name="input system" type="Control" parent="TabContainer/maths/calculations"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="calculation button" type="Button" parent="TabContainer/maths/calculations/input system"]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 32.0
+text = "Calculate"
+
+[node name="TextEdit" type="TextEdit" parent="TabContainer/maths/calculations/input system"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 192.0
+offset_bottom = 64.0
+placeholder_text = "Number for input"
+
+[node name="TextEdit" type="TextEdit" parent="TabContainer/maths/calculations"]
+layout_mode = 0
+offset_top = 296.0
+offset_right = 512.0
+offset_bottom = 616.0
 
 [node name="Save" type="Control" parent="TabContainer"]
 visible = false
@@ -715,7 +784,7 @@ script = ExtResource("1_pq12d")
 nonLegacy = [NodePath("../../Edit stats/Create stats"), NodePath("../../Edit stats/Manipulate stats"), NodePath("../../maths/Variables part")]
 legacy = [NodePath("../../Edit stats/Create stats legacy"), NodePath("../../Edit stats/Manipulate stats legacy"), NodePath("../../maths/Variables part legacy")]
 
-[node name="Calculation legacy mode" type="CheckButton" parent="TabContainer/Options"]
+[node name="Calculation legacy mode" type="CheckButton" parent="TabContainer/Options" node_paths=PackedStringArray("nonLegacy", "legacy")]
 layout_mode = 0
 offset_left = 525.0
 offset_top = 32.0
@@ -723,8 +792,10 @@ offset_right = 817.0
 offset_bottom = 63.0
 text = "Enable Calculation legacy mode"
 script = ExtResource("1_pq12d")
+nonLegacy = [NodePath("../../maths/calculations")]
+legacy = [NodePath("../../maths/calculations legacy")]
 
-[connection signal="button_down" from="Output System/Button" to="." method="printStats"]
+[connection signal="button_down" from="Print node/Button" to="." method="printStats"]
 [connection signal="button_down" from="Termination button" to="." method="terminateSession"]
 [connection signal="button_down" from="TabContainer/Edit stats/Create stats legacy/Button" to="." method="create_stat"]
 [connection signal="button_down" from="TabContainer/Edit stats/Manipulate stats legacy/Button" to="." method="ModifyStatBase"]
@@ -738,6 +809,8 @@ script = ExtResource("1_pq12d")
 [connection signal="button_down" from="TabContainer/maths/calculations legacy/delete step" to="." method="deleteStep"]
 [connection signal="button_down" from="TabContainer/maths/calculations legacy/Legacy input system2/calculation button" to="." method="calculateThroughSteps"]
 [connection signal="button_down" from="TabContainer/maths/calculations legacy/input system/calculation button" to="." method="calculateThroughSteps"]
+[connection signal="button_down" from="TabContainer/maths/calculations/Legacy input system2/calculation button" to="." method="calculateThroughSteps"]
+[connection signal="button_down" from="TabContainer/maths/calculations/input system/calculation button" to="." method="calculateThroughSteps"]
 [connection signal="button_down" from="TabContainer/Save/Save stats" to="." method="saveStats"]
 [connection signal="button_down" from="TabContainer/Save/Import sheet" to="." method="importSheet"]
 [connection signal="button_down" from="TabContainer/Save/Save calculation" to="." method="saveMath"]
