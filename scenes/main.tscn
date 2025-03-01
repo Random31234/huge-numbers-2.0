@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bsvg48syefxe0"]
 
-[ext_resource type="Script" path="res://scripts/legacyInputMode.gd" id="1_pq12d"]
+[ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -52,7 +52,7 @@ layout_mode = 0
 offset_left = 335.0
 offset_right = 1152.0
 offset_bottom = 649.0
-current_tab = 1
+current_tab = 3
 
 [node name="Edit stats" type="Control" parent="TabContainer"]
 visible = false
@@ -181,6 +181,8 @@ anchor_bottom = 1.0
 offset_left = 1.0
 offset_right = 1.0
 offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Number" type="TextEdit" parent="TabContainer/Edit stats/Create stats"]
 layout_mode = 0
@@ -262,47 +264,192 @@ text = "Press to apply effect
 "
 
 [node name="maths" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="StepsContainer" type="ScrollContainer" parent="TabContainer/maths"]
+[node name="Variables part legacy" type="Control" parent="TabContainer/maths"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Variable selector" type="OptionButton" parent="TabContainer/maths/Variables part legacy"]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 1.0
+offset_right = 817.0
+offset_bottom = 33.0
+selected = 0
+item_count = 1
+popup/item_0/text = "New var"
+popup/item_0/id = 0
+
+[node name="mantissa" type="TextEdit" parent="TabContainer/maths/Variables part legacy"]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 34.0
+offset_right = 707.0
+offset_bottom = 66.0
+
+[node name="e text" type="RichTextLabel" parent="TabContainer/maths/Variables part legacy"]
+layout_mode = 0
+offset_left = 707.0
+offset_top = 36.0
+offset_right = 718.0
+offset_bottom = 56.0
+text = "e"
+scroll_active = false
+
+[node name="exponent" type="TextEdit" parent="TabContainer/maths/Variables part legacy"]
+layout_mode = 0
+offset_left = 721.0
+offset_top = 34.0
+offset_right = 817.0
+offset_bottom = 66.0
+
+[node name="Name" type="TextEdit" parent="TabContainer/maths/Variables part legacy"]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 69.0
+offset_right = 817.0
+offset_bottom = 101.0
+placeholder_text = "Name"
+
+[node name="create or edit var button" type="Button" parent="TabContainer/maths/Variables part legacy"]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 102.0
+offset_right = 817.0
+offset_bottom = 134.0
+text = "Create var"
+
+[node name="variables" type="ScrollContainer" parent="TabContainer/maths/Variables part legacy"]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 252.0
+offset_right = 817.0
+offset_bottom = 380.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/maths/Variables part legacy/variables"]
+custom_minimum_size = Vector2(192, 2560)
+layout_mode = 2
+
+[node name="delete var" type="Button" parent="TabContainer/maths/Variables part legacy"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 0
+offset_left = 625.0
+offset_top = 220.0
+offset_right = 817.0
+offset_bottom = 252.0
+text = "delete var"
+
+[node name="Variables part" type="Control" parent="TabContainer/maths"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Variable selector" type="OptionButton" parent="TabContainer/maths/Variables part"]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 2.0
+offset_right = 817.0
+offset_bottom = 34.0
+selected = 0
+item_count = 1
+popup/item_0/text = "New var"
+popup/item_0/id = 0
+
+[node name="Number" type="TextEdit" parent="TabContainer/maths/Variables part"]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 35.0
+offset_right = 817.0
+offset_bottom = 67.0
+placeholder_text = "Number"
+
+[node name="Name" type="TextEdit" parent="TabContainer/maths/Variables part"]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 70.0
+offset_right = 817.0
+offset_bottom = 102.0
+placeholder_text = "Name"
+
+[node name="create or edit var button" type="Button" parent="TabContainer/maths/Variables part"]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 103.0
+offset_right = 817.0
+offset_bottom = 135.0
+text = "Create var"
+
+[node name="variables" type="ScrollContainer" parent="TabContainer/maths/Variables part"]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 252.0
+offset_right = 817.0
+offset_bottom = 380.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/maths/Variables part/variables"]
+custom_minimum_size = Vector2(192, 2560)
+layout_mode = 2
+
+[node name="delete var" type="Button" parent="TabContainer/maths/Variables part"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 0
+offset_left = 625.0
+offset_top = 220.0
+offset_right = 817.0
+offset_bottom = 252.0
+text = "delete var"
+
+[node name="calculations legacy" type="Control" parent="TabContainer/maths"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StepsContainer" type="ScrollContainer" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 3.0
-offset_top = 487.0
+offset_top = 489.0
 offset_right = 515.0
-offset_bottom = 615.0
+offset_bottom = 617.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/maths/StepsContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/maths/calculations legacy/StepsContainer"]
 custom_minimum_size = Vector2(512, 2560)
 layout_mode = 2
 
-[node name="output position" type="OptionButton" parent="TabContainer/maths"]
+[node name="output position" type="OptionButton" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 3.0
-offset_top = 450.0
+offset_top = 452.0
 offset_right = 99.0
-offset_bottom = 470.0
+offset_bottom = 472.0
 
-[node name="variable 1" type="OptionButton" parent="TabContainer/maths"]
+[node name="variable 1" type="OptionButton" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 126.0
-offset_top = 450.0
+offset_top = 452.0
 offset_right = 222.0
-offset_bottom = 470.0
+offset_bottom = 472.0
 
-[node name="variable 2" type="OptionButton" parent="TabContainer/maths"]
+[node name="variable 2" type="OptionButton" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 276.0
-offset_top = 450.0
+offset_top = 452.0
 offset_right = 372.0
-offset_bottom = 470.0
+offset_bottom = 472.0
 
-[node name="type of function" type="OptionButton" parent="TabContainer/maths"]
+[node name="type of function" type="OptionButton" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 410.0
-offset_top = 449.0
+offset_top = 451.0
 offset_right = 506.0
-offset_bottom = 480.0
+offset_bottom = 482.0
 item_count = 8
 popup/item_0/text = "+"
 popup/item_0/id = 0
@@ -321,156 +468,80 @@ popup/item_6/id = 6
 popup/item_7/text = "~"
 popup/item_7/id = 7
 
-[node name="equals sign" type="RichTextLabel" parent="TabContainer/maths"]
+[node name="equals sign" type="RichTextLabel" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 102.0
-offset_top = 450.0
+offset_top = 452.0
 offset_right = 122.0
-offset_bottom = 470.0
+offset_bottom = 472.0
 bbcode_enabled = true
 text = " ="
 scroll_active = false
 
-[node name="function symbol" type="RichTextLabel" parent="TabContainer/maths"]
+[node name="function symbol" type="RichTextLabel" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 239.0
-offset_top = 450.0
+offset_top = 452.0
 offset_right = 259.0
-offset_bottom = 470.0
+offset_bottom = 472.0
 bbcode_enabled = true
 text = " ^"
 scroll_active = false
 
-[node name="Create_edit_step_button" type="Button" parent="TabContainer/maths"]
+[node name="Create_edit_step_button" type="Button" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 224.0
-offset_top = 412.0
+offset_top = 414.0
 offset_right = 352.0
-offset_bottom = 444.0
+offset_bottom = 446.0
 text = "Edit Step"
 
-[node name="step selector" type="OptionButton" parent="TabContainer/maths"]
+[node name="step selector" type="OptionButton" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 224.0
-offset_top = 374.0
+offset_top = 376.0
 offset_right = 352.0
-offset_bottom = 406.0
+offset_bottom = 408.0
 
-[node name="delete step" type="Button" parent="TabContainer/maths"]
+[node name="delete step" type="Button" parent="TabContainer/maths/calculations legacy"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 373.0
-offset_top = 339.0
-offset_right = 501.0
-offset_bottom = 371.0
+offset_left = 689.0
+offset_top = 585.0
+offset_right = 817.0
+offset_bottom = 617.0
 text = "delete step"
 
-[node name="calculation button" type="Button" parent="TabContainer/maths"]
+[node name="calculation button" type="Button" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 50.0
-offset_top = 377.0
+offset_top = 379.0
 offset_right = 178.0
-offset_bottom = 409.0
+offset_bottom = 411.0
 text = "Calculate"
 
-[node name="input mantissa" type="TextEdit" parent="TabContainer/maths"]
+[node name="input mantissa" type="TextEdit" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 23.0
-offset_top = 413.0
+offset_top = 415.0
 offset_right = 106.0
-offset_bottom = 445.0
+offset_bottom = 447.0
 
-[node name="input e" type="RichTextLabel" parent="TabContainer/maths"]
+[node name="input e" type="RichTextLabel" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 106.0
-offset_top = 415.0
+offset_top = 417.0
 offset_right = 117.0
-offset_bottom = 435.0
+offset_bottom = 437.0
 text = "e"
 scroll_active = false
 
-[node name="input exponent" type="TextEdit" parent="TabContainer/maths"]
+[node name="input exponent" type="TextEdit" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
 offset_left = 118.0
-offset_top = 413.0
+offset_top = 415.0
 offset_right = 214.0
-offset_bottom = 445.0
-
-[node name="Variables legacy" type="Control" parent="TabContainer/maths"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Variable selector" type="OptionButton" parent="TabContainer/maths/Variables legacy"]
-layout_mode = 0
-offset_left = 625.0
-offset_top = 55.0
-offset_right = 817.0
-offset_bottom = 87.0
-selected = 0
-item_count = 1
-popup/item_0/text = "New var"
-popup/item_0/id = 0
-
-[node name="mantissa" type="TextEdit" parent="TabContainer/maths/Variables legacy"]
-layout_mode = 0
-offset_left = 624.0
-offset_top = 88.0
-offset_right = 707.0
-offset_bottom = 120.0
-
-[node name="e text" type="RichTextLabel" parent="TabContainer/maths/Variables legacy"]
-layout_mode = 0
-offset_left = 707.0
-offset_top = 90.0
-offset_right = 718.0
-offset_bottom = 110.0
-text = "e"
-scroll_active = false
-
-[node name="exponent" type="TextEdit" parent="TabContainer/maths/Variables legacy"]
-layout_mode = 0
-offset_left = 721.0
-offset_top = 88.0
-offset_right = 817.0
-offset_bottom = 120.0
-
-[node name="Name" type="TextEdit" parent="TabContainer/maths/Variables legacy"]
-layout_mode = 0
-offset_left = 625.0
-offset_top = 123.0
-offset_right = 817.0
-offset_bottom = 155.0
-placeholder_text = "Name"
-
-[node name="create or edit var button" type="Button" parent="TabContainer/maths/Variables legacy"]
-layout_mode = 0
-offset_left = 625.0
-offset_top = 156.0
-offset_right = 817.0
-offset_bottom = 188.0
-text = "Create var"
-
-[node name="variables" type="ScrollContainer" parent="TabContainer/maths/Variables legacy"]
-layout_mode = 0
-offset_left = 625.0
-offset_top = 252.0
-offset_right = 817.0
-offset_bottom = 380.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/maths/Variables legacy/variables"]
-custom_minimum_size = Vector2(192, 2560)
-layout_mode = 2
-
-[node name="delete var" type="Button" parent="TabContainer/maths/Variables legacy"]
-modulate = Color(1, 0, 0, 1)
-custom_minimum_size = Vector2(128, 32)
-layout_mode = 0
-offset_left = 625.0
-offset_top = 220.0
-offset_right = 817.0
-offset_bottom = 252.0
-text = "delete var"
+offset_bottom = 447.0
 
 [node name="Save" type="Control" parent="TabContainer"]
 visible = false
@@ -615,7 +686,6 @@ offset_bottom = 151.0
 text = "Delete math"
 
 [node name="Options" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -629,17 +699,25 @@ script = ExtResource("1_pq12d")
 nonLegacy = [NodePath("../../Edit stats/Create stats"), NodePath("../../Edit stats/Manipulate stats")]
 legacy = [NodePath("../../Edit stats/Create stats legacy"), NodePath("../../Edit stats/Manipulate stats legacy")]
 
+[node name="Calculation legacy mode" type="CheckButton" parent="TabContainer/Options"]
+layout_mode = 0
+offset_right = 44.0
+offset_bottom = 24.0
+script = ExtResource("1_pq12d")
+
 [connection signal="button_down" from="Output System/Button" to="." method="printStats"]
 [connection signal="button_down" from="Termination button" to="." method="terminateSession"]
 [connection signal="button_down" from="TabContainer/Edit stats/Create stats legacy/Button" to="." method="create_stat"]
 [connection signal="button_down" from="TabContainer/Edit stats/Manipulate stats legacy/Button" to="." method="ModifyStatBase"]
 [connection signal="button_down" from="TabContainer/Edit stats/Create stats/Button" to="." method="create_stat"]
 [connection signal="button_down" from="TabContainer/Edit stats/Manipulate stats/Button" to="." method="ModifyStatBase"]
-[connection signal="button_down" from="TabContainer/maths/Create_edit_step_button" to="." method="createEditStep"]
-[connection signal="button_down" from="TabContainer/maths/delete step" to="." method="deleteStep"]
-[connection signal="button_down" from="TabContainer/maths/calculation button" to="." method="calculateThroughSteps"]
-[connection signal="button_down" from="TabContainer/maths/Variables legacy/create or edit var button" to="." method="createEditVariable"]
-[connection signal="button_down" from="TabContainer/maths/Variables legacy/delete var" to="." method="deleteVariable"]
+[connection signal="button_down" from="TabContainer/maths/Variables part legacy/create or edit var button" to="." method="createEditVariable"]
+[connection signal="button_down" from="TabContainer/maths/Variables part legacy/delete var" to="." method="deleteVariable"]
+[connection signal="button_down" from="TabContainer/maths/Variables part/create or edit var button" to="." method="createEditVariable"]
+[connection signal="button_down" from="TabContainer/maths/Variables part/delete var" to="." method="deleteVariable"]
+[connection signal="button_down" from="TabContainer/maths/calculations legacy/Create_edit_step_button" to="." method="createEditStep"]
+[connection signal="button_down" from="TabContainer/maths/calculations legacy/delete step" to="." method="deleteStep"]
+[connection signal="button_down" from="TabContainer/maths/calculations legacy/calculation button" to="." method="calculateThroughSteps"]
 [connection signal="button_down" from="TabContainer/Save/Save stats" to="." method="saveStats"]
 [connection signal="button_down" from="TabContainer/Save/Import sheet" to="." method="importSheet"]
 [connection signal="button_down" from="TabContainer/Save/Save calculation" to="." method="saveMath"]
@@ -650,4 +728,3 @@ legacy = [NodePath("../../Edit stats/Create stats legacy"), NodePath("../../Edit
 [connection signal="button_down" from="TabContainer/Save/load maths" to="." method="loadMaths"]
 [connection signal="button_down" from="TabContainer/Save/save to new math" to="." method="saveNewMath"]
 [connection signal="button_down" from="TabContainer/Save/delete math" to="." method="deleteMaths"]
-[connection signal="toggled" from="TabContainer/Options/CheckButton" to="TabContainer/Options/CheckButton" method="Toggle"]
