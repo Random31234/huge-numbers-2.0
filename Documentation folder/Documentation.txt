@@ -1,1 +1,19 @@
 This text document is to contain all the documentation that will be used, which will be contained in a string each by topic
+
+
+Topics:
+	Keywords: This topic goes over documented keywords, and what they mean for this program in the context of the mathematics
+	system. Finally one more thing, no variables or stats can be named as any of the keywords or symbols
+	
+	Errors: This topic goes over commonly made errors done and what can be done.
+	
+	Limitations: This topic goes over limits that are in place, as the program does have flaws in what it cannot do or 
+	are in place to protect users from themselves. 
+	
+	
+
+Keywords:
+	
+	
+	
+	input:
