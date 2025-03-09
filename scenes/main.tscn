@@ -17,12 +17,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TextEdit" type="TextEdit" parent="Print node"]
+layout_mode = 0
 offset_top = 520.0
 offset_right = 213.0
 offset_bottom = 648.0
 
 [node name="Button" type="Button" parent="Print node"]
 modulate = Color(0.768627, 0.768627, 0.768627, 1)
+layout_mode = 0
 offset_left = 213.0
 offset_top = 520.0
 offset_right = 334.0
@@ -814,7 +816,7 @@ popup/item_0/id = 0
 popup/item_1/text = "Keywords"
 popup/item_1/id = 1
 script = ExtResource("2_xlgaw")
-documents = Array[String](["", ""])
+documents = Array[String](["Topics: /n Keywords: This topic goes over documented keywords, and what they mean for this program in the context of the mathematicssystem. Finally one more thing, no variables or stats can be named as any of the keywords or symbolsErrors: This topic goes over commonly made errors done and what can be done to resolve themLimitations: This topic goes over limits that are in place, as the program does have flaws in what it cannot do or are in place to protect users from themselves. Settings: This topic goes over the various settings. ", "\\n"])
 t = NodePath("../RichTextLabel")
 
 [connection signal="button_down" from="Print node/Button" to="." method="printStats"]

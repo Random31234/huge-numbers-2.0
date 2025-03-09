@@ -1,19 +1,34 @@
 This text document is to contain all the documentation that will be used, which will be contained in a string each by topic
 
-
-Topics:
+#Do note, that /n is necessary for determining the end of line..
+Topics: //n
 	Keywords: This topic goes over documented keywords, and what they mean for this program in the context of the mathematics
 	system. Finally one more thing, no variables or stats can be named as any of the keywords or symbols
-	
-	Errors: This topic goes over commonly made errors done and what can be done.
-	
+	//n
+	Errors: This topic goes over commonly made errors done and what can be done to resolve them
+	//n
 	Limitations: This topic goes over limits that are in place, as the program does have flaws in what it cannot do or 
 	are in place to protect users from themselves. 
-	
+	//n
+	Settings: This topic goes over the various settings. 
 	
 
-Keywords:
+Keywords://n
 	
+	All keywords must be seperated from variables or stats with spaces
 	
+	input: This refers to what is inputted into the calculation.
+	//n
+	+:This symbol represents addition
+	//n
+	-:This symbol represents subtraction, its handled much like normal order of operations
+	//n
+	*:This symbol represents multiplication
+	//n
+	^:This symbol represents being raised to a power. its handled much like normal order of operations
+	//n
+	Rand: This name calls on a random value between two variables
 	
-	input:
+	//n
+	=: This symbol represents the variable being set equal
+	//n
