@@ -2,6 +2,8 @@ extends Node
 @export var maths:Array[math]
 @export var m:math
 @export var stat:stats
+
+var b:Big
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#test function
