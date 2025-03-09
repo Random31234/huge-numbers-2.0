@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsvg48syefxe0"]
+[gd_scene load_steps=4 format=3 uid="uid://bsvg48syefxe0"]
 
+[ext_resource type="Script" path="res://scenes/Stats.gd" id="1_7y165"]
 [ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
 [ext_resource type="Script" path="res://scripts/Documentation.gd" id="2_xlgaw"]
 
@@ -31,7 +32,10 @@ offset_right = 334.0
 offset_bottom = 648.0
 text = "Print stat"
 
-[node name="storage node" type="Node" parent="."]
+[node name="stat Storage Node" type="Node" parent="."]
+script = ExtResource("1_7y165")
+
+[node name="math Storage Node" type="Node" parent="."]
 
 [node name="stats scroll container" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(256, 520)
@@ -57,7 +61,7 @@ layout_mode = 0
 offset_left = 342.0
 offset_right = 1152.0
 offset_bottom = 648.0
-current_tab = 3
+current_tab = 1
 
 [node name="Edit stats" type="Control" parent="TabContainer"]
 visible = false
@@ -271,7 +275,6 @@ text = "Press to apply effect
 "
 
 [node name="maths" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -776,6 +779,7 @@ offset_bottom = 151.0
 text = "Delete math"
 
 [node name="Options" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
