@@ -45,10 +45,11 @@ text = "Print stat"
 [node name="stat Storage Node" type="Node" parent="."]
 script = ExtResource("1_7y165")
 
-[node name="math Storage Node" type="Node" parent="."]
+[node name="math Storage Node" type="Node" parent="." node_paths=PackedStringArray("stat")]
 script = ExtResource("2_0oss8")
 maths = Array[Object]([null, null])
 m = SubResource("Resource_wet55")
+stat = NodePath("../stat Storage Node")
 
 [node name="stats scroll container" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(256, 520)
