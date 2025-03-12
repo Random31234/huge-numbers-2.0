@@ -8,11 +8,12 @@ var b:Big
 func _ready() -> void:
 	#test function
 	#var vale =math.new()
-	#var b:Array[Big]
-	#b.append(Big.new(1,2))
-	#b.append(Big.new(1,3))
+	#var be:Array[Big]
+	#be.append(Big.new(1,2))
+	#be.append(Big.new(1,3))
 	#vale.varVal = b
 	#maths.append(vale)
+	
 	pass
 
 

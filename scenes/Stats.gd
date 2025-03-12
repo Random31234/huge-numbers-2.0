@@ -13,7 +13,8 @@ var selected:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	
+	updateStats()
 
 
 
@@ -83,7 +84,9 @@ func swapFunction(i:int):
 
 
 func appendStat(b:Big,n:String):
-	pass
+	names.append(n)
+	
+	values.append(b)
 
 
 func manipulateStat(index:int,funcIndex:int,b:Big):
