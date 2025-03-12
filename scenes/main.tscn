@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsvg48syefxe0"]
+[gd_scene load_steps=11 format=3 uid="uid://bsvg48syefxe0"]
 
 [ext_resource type="Script" path="res://scenes/Stats.gd" id="1_7y165"]
 [ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
@@ -6,6 +6,21 @@
 [ext_resource type="Script" path="res://scripts/Documentation.gd" id="2_xlgaw"]
 [ext_resource type="Script" path="res://scripts/math.gd" id="3_i23ap"]
 [ext_resource type="Script" path="res://scripts/bigNumber.gd" id="4_kxll6"]
+
+[sub_resource type="Resource" id="Resource_36vgc"]
+script = ExtResource("4_kxll6")
+mantissa = 3.0
+exponent = 23
+
+[sub_resource type="Resource" id="Resource_urerf"]
+script = ExtResource("4_kxll6")
+mantissa = 2.0
+exponent = 1
+
+[sub_resource type="Resource" id="Resource_37l18"]
+script = ExtResource("4_kxll6")
+mantissa = 1.0
+exponent = 0
 
 [sub_resource type="Resource" id="Resource_wet55"]
 script = ExtResource("3_i23ap")
@@ -44,6 +59,8 @@ text = "Print stat"
 
 [node name="stat Storage Node" type="Node" parent="." node_paths=PackedStringArray("statBox")]
 script = ExtResource("1_7y165")
+names = Array[String](["dr", "sr", "a"])
+values = Array[ExtResource("4_kxll6")]([SubResource("Resource_36vgc"), SubResource("Resource_urerf"), SubResource("Resource_37l18")])
 statBox = NodePath("../stats scroll container/VBoxContainer")
 
 [node name="math Storage Node" type="Node" parent="." node_paths=PackedStringArray("stat")]
@@ -837,7 +854,7 @@ popup/item_0/id = 0
 popup/item_1/text = "Keywords"
 popup/item_1/id = 1
 script = ExtResource("2_xlgaw")
-documents = Array[String](["Topics: /n Keywords: This topic goes over documented keywords, and what they mean for this program in the context of the mathematicssystem. Finally one more thing, no variables or stats can be named as any of the keywords or symbolsErrors: This topic goes over commonly made errors done and what can be done to resolve themLimitations: This topic goes over limits that are in place, as the program does have flaws in what it cannot do or are in place to protect users from themselves. Settings: This topic goes over the various settings. ", "\\n"])
+documents = Array[String](["Topics: //n Keywords: This topic goes over documented keywords, and what they mean for this program in the context of the mathematicssystem. Finally one more thing, no variables or stats can be named as any of the keywords or symbolsErrors: This topic goes over commonly made errors done and what can be done to resolve themLimitations: This topic goes over limits that are in place, as the program does have flaws in what it cannot do or are in place to protect users from themselves. Settings: This topic goes over the various settings. ", "\\n"])
 t = NodePath("../RichTextLabel")
 
 [node name="Swappable" type="CheckButton" parent="TabContainer/Options"]
