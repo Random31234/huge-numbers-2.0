@@ -22,11 +22,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func swappableT(b:bool):
-	swappable = b
-	updateStats()
 
-#this function swaps the values.
+
+#this function swaps the values, a helper function
 func swapper(id1:int,id2:int):
 	var v:Big
 	
@@ -43,8 +41,7 @@ func swapper(id1:int,id2:int):
 
 
 
-
-#this function is to be called for updates.
+#this function is to be called for updates, a helper function that will be called repeatedly to aid in the process.
 func updateStats():
 	
 	for n in statBox.get_children():
@@ -70,6 +67,7 @@ func updateStats():
 		z+=1
 		
 
+#the actual button functions as practiced is in here.
 func swapFunction(i:int):
 	
 	if (selected == true):
@@ -82,6 +80,15 @@ func swapFunction(i:int):
 		print(" selected first:  "+ str(firstSelected))
 		firstSelected = i
 		selected= true
-		
-		
-		
+
+
+func appendStat(b:Big,n:String):
+	pass
+
+
+func manipulateStat(index:int,funcIndex:int,b:Big):
+	pass
+
+func swappableT(b:bool):
+	swappable = b
+	updateStats()
