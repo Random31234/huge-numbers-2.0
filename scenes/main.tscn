@@ -42,8 +42,9 @@ offset_right = 334.0
 offset_bottom = 648.0
 text = "Print stat"
 
-[node name="stat Storage Node" type="Node" parent="."]
+[node name="stat Storage Node" type="Node" parent="." node_paths=PackedStringArray("statBox")]
 script = ExtResource("1_7y165")
+statBox = NodePath("../stats scroll container/VBoxContainer")
 
 [node name="math Storage Node" type="Node" parent="." node_paths=PackedStringArray("stat")]
 script = ExtResource("2_0oss8")
@@ -75,7 +76,7 @@ layout_mode = 0
 offset_left = 342.0
 offset_right = 1152.0
 offset_bottom = 648.0
-current_tab = 1
+current_tab = 3
 
 [node name="Edit stats" type="Control" parent="TabContainer"]
 visible = false
@@ -289,6 +290,7 @@ text = "Press to apply effect
 "
 
 [node name="maths" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -793,14 +795,14 @@ offset_bottom = 151.0
 text = "Delete math"
 
 [node name="Options" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
 [node name="CheckButton" type="CheckButton" parent="TabContainer/Options" node_paths=PackedStringArray("nonLegacy", "legacy")]
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 0
-offset_left = 561.0
-offset_right = 817.0
+offset_left = 490.0
+offset_right = 810.0
 offset_bottom = 32.0
 text = "Enable input legacy mode"
 script = ExtResource("1_pq12d")
@@ -808,10 +810,11 @@ nonLegacy = [NodePath("../../Edit stats/Create stats"), NodePath("../../Edit sta
 legacy = [NodePath("../../Edit stats/Create stats legacy"), NodePath("../../Edit stats/Manipulate stats legacy"), NodePath("../../maths/Variables part legacy")]
 
 [node name="Calculation legacy mode" type="CheckButton" parent="TabContainer/Options" node_paths=PackedStringArray("nonLegacy", "legacy")]
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 0
-offset_left = 525.0
+offset_left = 490.0
 offset_top = 32.0
-offset_right = 817.0
+offset_right = 810.0
 offset_bottom = 63.0
 text = "Enable Calculation legacy mode"
 script = ExtResource("1_pq12d")
@@ -836,6 +839,14 @@ popup/item_1/id = 1
 script = ExtResource("2_xlgaw")
 documents = Array[String](["Topics: /n Keywords: This topic goes over documented keywords, and what they mean for this program in the context of the mathematicssystem. Finally one more thing, no variables or stats can be named as any of the keywords or symbolsErrors: This topic goes over commonly made errors done and what can be done to resolve themLimitations: This topic goes over limits that are in place, as the program does have flaws in what it cannot do or are in place to protect users from themselves. Settings: This topic goes over the various settings. ", "\\n"])
 t = NodePath("../RichTextLabel")
+
+[node name="Swappable" type="CheckButton" parent="TabContainer/Options"]
+custom_minimum_size = Vector2(320, 0)
+offset_left = 490.0
+offset_top = 61.0
+offset_right = 810.0
+offset_bottom = 92.0
+text = "Enable swapping of stat order"
 
 [connection signal="button_down" from="Print node/Button" to="." method="printStats"]
 [connection signal="button_down" from="Termination button" to="." method="terminateSession"]
@@ -864,3 +875,4 @@ t = NodePath("../RichTextLabel")
 [connection signal="button_down" from="TabContainer/Save/save to new math" to="." method="saveNewMath"]
 [connection signal="button_down" from="TabContainer/Save/delete math" to="." method="deleteMaths"]
 [connection signal="item_selected" from="TabContainer/Options/OptionButton" to="TabContainer/Options/OptionButton" method="TopicSelected"]
+[connection signal="toggled" from="TabContainer/Options/Swappable" to="stat Storage Node" method="swappableT"]
