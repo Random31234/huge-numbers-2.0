@@ -87,10 +87,14 @@ func appendStat(b:Big,n:String):
 	names.append(n)
 	
 	values.append(b)
+	updateStats()
 
 
 func manipulateStat(index:int,funcIndex:int,b:Big):
+	
+	updateStats()
 	pass
+
 
 func swappableT(b:bool):
 	swappable = b
