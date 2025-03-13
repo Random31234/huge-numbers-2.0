@@ -2,6 +2,7 @@ extends Control
 
 signal manipulate(index:int,funcIndex:int,b:Big)
 signal append(b:Big,n:String)
+signal updateStatList(a:Array[String])
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -18,3 +19,10 @@ func appendS(b:Big,n:String):
 	emit_signal("append",b,n)
 	print("appended")
 	print(b.toScientific())
+	
+
+
+func updateManipulateStatsOptions(a:Array[String]):
+	
+	emit_signal("updateStatList",a)
+	pass

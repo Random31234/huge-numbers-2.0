@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bsvg48syefxe0"]
+[gd_scene load_steps=16 format=3 uid="uid://bsvg48syefxe0"]
 
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="1_7y165"]
 [ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
@@ -6,9 +6,11 @@
 [ext_resource type="Script" path="res://scripts/documentation.gd" id="2_xlgaw"]
 [ext_resource type="Script" path="res://scripts/math.gd" id="3_i23ap"]
 [ext_resource type="Script" path="res://scripts/bigNumber.gd" id="4_kxll6"]
-[ext_resource type="Script" path="res://scripts/editStats.gd" id="5_scl5u"]
-[ext_resource type="Script" path="res://scripts/CreateStatScripts/createStatLegacy.gd" id="6_p6lff"]
-[ext_resource type="Script" path="res://scripts/CreateStatScripts/createStatNew.gd" id="7_eucbd"]
+[ext_resource type="Script" path="res://scripts/editStats/editStats.gd" id="5_scl5u"]
+[ext_resource type="Script" path="res://scripts/editStats/CreateStatScripts/createStatLegacy.gd" id="6_p6lff"]
+[ext_resource type="Script" path="res://scripts/editStats/CreateStatScripts/createStatNew.gd" id="7_eucbd"]
+[ext_resource type="Script" path="res://scripts/editStats/ManipulateStatsScripts/manipulateStatsLegacy.gd" id="7_q0xo6"]
+[ext_resource type="Script" path="res://scripts/editStats/ManipulateStatsScripts/manipulateStatsNew.gd" id="9_vwndi"]
 
 [sub_resource type="Resource" id="Resource_36vgc"]
 script = ExtResource("4_kxll6")
@@ -155,11 +157,16 @@ offset_right = 810.0
 offset_bottom = 96.0
 text = "Press to create new stat"
 
-[node name="Manipulate stats legacy" type="Control" parent="TabContainer/Edit stats"]
+[node name="Manipulate stats legacy" type="Control" parent="TabContainer/Edit stats" node_paths=PackedStringArray("mantissa", "exponent", "statSelect", "typeOfFunction")]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("7_q0xo6")
+mantissa = NodePath("mantissa")
+exponent = NodePath("exponent")
+statSelect = NodePath("Stat selection")
+typeOfFunction = NodePath("Type of function")
 
 [node name="Stat selection" type="OptionButton" parent="TabContainer/Edit stats/Manipulate stats legacy"]
 layout_mode = 0
@@ -262,11 +269,15 @@ offset_right = 810.0
 offset_bottom = 96.0
 text = "Press to create new stat"
 
-[node name="Manipulate stats" type="Control" parent="TabContainer/Edit stats"]
+[node name="Manipulate stats" type="Control" parent="TabContainer/Edit stats" node_paths=PackedStringArray("number", "statSelect", "typeOfFunction")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("9_vwndi")
+number = NodePath("Number")
+statSelect = NodePath("Stat selection")
+typeOfFunction = NodePath("Type of function")
 
 [node name="Stat selection" type="OptionButton" parent="TabContainer/Edit stats/Manipulate stats"]
 layout_mode = 0
@@ -878,14 +889,20 @@ offset_bottom = 92.0
 text = "Enable swapping of stat order"
 
 [connection signal="button_down" from="Print node/Button" to="." method="printStats"]
+[connection signal="updateList" from="stat Storage Node" to="TabContainer/Edit stats" method="updateManipulateStatsOptions"]
 [connection signal="button_down" from="Termination button" to="." method="terminateSession"]
 [connection signal="append" from="TabContainer/Edit stats" to="stat Storage Node" method="appendStat"]
+[connection signal="manipulate" from="TabContainer/Edit stats" to="stat Storage Node" method="manipulateStat"]
+[connection signal="updateStatList" from="TabContainer/Edit stats" to="TabContainer/Edit stats/Manipulate stats legacy" method="updateStatSelection"]
+[connection signal="updateStatList" from="TabContainer/Edit stats" to="TabContainer/Edit stats/Manipulate stats" method="updateStatSelection"]
 [connection signal="Create" from="TabContainer/Edit stats/Create stats legacy" to="TabContainer/Edit stats" method="appendS"]
 [connection signal="button_down" from="TabContainer/Edit stats/Create stats legacy/Button" to="TabContainer/Edit stats/Create stats legacy" method="pressed"]
-[connection signal="button_down" from="TabContainer/Edit stats/Manipulate stats legacy/Button" to="." method="ModifyStatBase"]
+[connection signal="manipulate" from="TabContainer/Edit stats/Manipulate stats legacy" to="TabContainer/Edit stats" method="manipulateS"]
+[connection signal="button_down" from="TabContainer/Edit stats/Manipulate stats legacy/Button" to="TabContainer/Edit stats/Manipulate stats legacy" method="pressed"]
 [connection signal="Create" from="TabContainer/Edit stats/Create stats" to="TabContainer/Edit stats" method="appendS"]
 [connection signal="button_down" from="TabContainer/Edit stats/Create stats/Button" to="TabContainer/Edit stats/Create stats" method="pressed"]
-[connection signal="button_down" from="TabContainer/Edit stats/Manipulate stats/Button" to="." method="ModifyStatBase"]
+[connection signal="manipulate" from="TabContainer/Edit stats/Manipulate stats" to="TabContainer/Edit stats" method="manipulateS"]
+[connection signal="button_down" from="TabContainer/Edit stats/Manipulate stats/Button" to="TabContainer/Edit stats/Manipulate stats" method="pressed"]
 [connection signal="button_down" from="TabContainer/maths/Variables part legacy/create or edit var button" to="." method="createEditVariable"]
 [connection signal="button_down" from="TabContainer/maths/Variables part legacy/delete var" to="." method="deleteVariable"]
 [connection signal="button_down" from="TabContainer/maths/Variables part/create or edit var button" to="." method="createEditVariable"]

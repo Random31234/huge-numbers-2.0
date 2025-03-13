@@ -11,6 +11,7 @@ var swappable:bool
 var firstSelected:int
 var selected:bool
 
+signal updateList(a:Array[String])
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -66,7 +67,7 @@ func updateStats():
 			i.get_child(1).set_process(4)
 		
 		z+=1
-		
+	emit_signal("updateList",names)
 
 #the actual button functions as practiced is in here.
 func swapFunction(i:int):
@@ -92,8 +93,10 @@ func appendStat(b:Big,n:String):
 
 func manipulateStat(index:int,funcIndex:int,b:Big):
 	
+	print(index)
+	
+	
 	updateStats()
-	pass
 
 
 func swappableT(b:bool):
