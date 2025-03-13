@@ -98,10 +98,9 @@ layout_mode = 0
 offset_left = 342.0
 offset_right = 1152.0
 offset_bottom = 648.0
-current_tab = 3
+current_tab = 0
 
 [node name="Edit stats" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 script = ExtResource("5_scl5u")
 metadata/_tab_index = 0
@@ -834,6 +833,7 @@ offset_bottom = 151.0
 text = "Delete math"
 
 [node name="Options" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 

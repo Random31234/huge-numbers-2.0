@@ -9,5 +9,5 @@ func pressed():
 	
 	
 	b = Big.new(number.text)
-	
-	emit_signal("Manipulate",statSelect.selected,typeOfFunction.selected,b)
+	print("Big is..... " +  b.toScientific())
+	emit_signal("manipulate",statSelect.selected,typeOfFunction.selected,b)

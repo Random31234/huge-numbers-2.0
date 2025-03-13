@@ -16,6 +16,7 @@ signal updateList(a:Array[String])
 func _ready() -> void:
 	
 	updateStats()
+	emit_signal("updateList",names)
 
 
 
@@ -39,6 +40,7 @@ func swapper(id1:int,id2:int):
 	values[id1] = values[id2]
 	values[id2] =v
 	updateStats()
+	emit_signal("updateList",names)
 
 
 
@@ -67,7 +69,7 @@ func updateStats():
 			i.get_child(1).set_process(4)
 		
 		z+=1
-	emit_signal("updateList",names)
+	
 
 #the actual button functions as practiced is in here.
 func swapFunction(i:int):
@@ -95,7 +97,18 @@ func manipulateStat(index:int,funcIndex:int,b:Big):
 	
 	print(index)
 	
-	
+	if(index != null && funcIndex != null && index != -1 && funcIndex !=-1 && b != null):
+		
+		
+		if(funcIndex == 0):
+			values[index]=b.add(b,values[index])
+		
+		
+		if(funcIndex == 7):
+			
+			values.remove_at(index)
+			names.remove_at(index)
+			emit_signal("updateList",names)
 	updateStats()
 
 
