@@ -1,1 +1,12 @@
 This document is for the planned goals of the project at hand. 
+
+
+Current goals:
+	
+	Work on variables input system:
+		This means making the base, then legacy and new variants.
+	
+	work on Calculations:
+		Start off with calculation inputs, then calculation base.
+			After completing the inputs system, then work on the system that puts it all together
+		This means making a means to grab the values first, then worry about how to input the information in.
