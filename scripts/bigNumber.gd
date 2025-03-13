@@ -291,6 +291,15 @@ static func divide(x, y) -> Big:
 ## Raises a Big number to the nth power and returns the Big number result
 static func power(x: Big, y) -> Big:
 	var result := Big.new(x)
+	
+	if y is Big:
+		if(y.exponent*x.exponent < INT_MAX && y.exponent <308):
+			var f
+			f = y.mantissa*(10**y.exponent)
+			print(f)
+			return power(x,f)
+			
+	
 	if typeof(y) == TYPE_INT:
 		if y <= 0:
 			if y < 0:

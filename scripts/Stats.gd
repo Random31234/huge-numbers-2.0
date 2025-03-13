@@ -102,8 +102,18 @@ func manipulateStat(index:int,funcIndex:int,b:Big):
 		
 		if(funcIndex == 0):
 			values[index]=b.add(b,values[index])
-		
-		
+		if(funcIndex == 1):
+			values[index]=b.subtract(values[index],b)
+		if(funcIndex == 2):
+			values[index]=b.multiply(b,values[index])
+		if(funcIndex == 3):
+			values[index]=b.divide(values[index],b)
+		if(funcIndex == 4):
+			values[index]=b.power(values[index],b)
+		if(funcIndex == 5):
+			values[index]=b.power(values[index], b.divide(1,b))
+		if(funcIndex == 6):
+			values[index]=b
 		if(funcIndex == 7):
 			
 			values.remove_at(index)
