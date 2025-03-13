@@ -62,11 +62,12 @@ offset_right = 334.0
 offset_bottom = 648.0
 text = "Print stat"
 
-[node name="stat Storage Node" type="Node" parent="." node_paths=PackedStringArray("statBox")]
+[node name="stat Storage Node" type="Node" parent="." node_paths=PackedStringArray("statBox", "errorBox")]
 script = ExtResource("1_7y165")
 names = Array[String](["dr", "sr", "a"])
 values = Array[ExtResource("4_kxll6")]([SubResource("Resource_36vgc"), SubResource("Resource_urerf"), SubResource("Resource_37l18")])
 statBox = NodePath("../stats scroll container/VBoxContainer")
+errorBox = NodePath("../Print node/TextEdit")
 
 [node name="math Storage Node" type="Node" parent="." node_paths=PackedStringArray("stat")]
 script = ExtResource("2_0oss8")

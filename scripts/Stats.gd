@@ -4,6 +4,10 @@ class_name stats
 @export var names:Array[String]
 @export var values:Array[Big]
 @export var statBox:VBoxContainer
+@export var errorBox:TextEdit
+
+
+@export var maths:mathsStorage
 var na:Node2D
 var statEntity = preload("res://scenes/StatEntity.tscn")
 var swappable:bool
@@ -87,6 +91,13 @@ func swapFunction(i:int):
 
 
 func appendStat(b:Big,n:String):
+	if(maths.searchStringInArray(maths.keywords,n) ):
+		errorBox.text +="Error name for new stat matches keyword, please use a different name"
+		return
+	if(maths.searchStringInArray(names,n)):
+		errorBox.text +="Error, name for new stat matches an existing stat name, please use a different name"
+		return
+	
 	names.append(n)
 	
 	values.append(b)

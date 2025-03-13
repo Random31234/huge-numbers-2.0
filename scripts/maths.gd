@@ -1,8 +1,9 @@
 extends Node
+class_name mathsStorage
 @export var maths:Array[math]
 @export var m:math
 @export var stat:stats
-
+@export var keywords:Array[String]
 var b:Big
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
