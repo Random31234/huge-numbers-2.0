@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bsvg48syefxe0"]
+[gd_scene load_steps=18 format=3 uid="uid://bsvg48syefxe0"]
 
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="1_7y165"]
 [ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://scripts/editStats/CreateStatScripts/createStatNew.gd" id="7_eucbd"]
 [ext_resource type="Script" path="res://scripts/editStats/ManipulateStatsScripts/manipulateStatsLegacy.gd" id="7_q0xo6"]
 [ext_resource type="Script" path="res://scripts/editStats/ManipulateStatsScripts/manipulateStatsNew.gd" id="9_vwndi"]
+[ext_resource type="Script" path="res://scripts/VariableScripts/varLegacy.gd" id="10_cdgyd"]
+[ext_resource type="Script" path="res://scripts/VariableScripts/varNew.gd" id="11_18ykq"]
 
 [sub_resource type="Resource" id="Resource_36vgc"]
 script = ExtResource("4_kxll6")
@@ -337,6 +339,7 @@ metadata/_tab_index = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("10_cdgyd")
 
 [node name="Variable selector" type="OptionButton" parent="TabContainer/maths/Variables part legacy"]
 layout_mode = 0
@@ -415,6 +418,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("11_18ykq")
 
 [node name="Variable selector" type="OptionButton" parent="TabContainer/maths/Variables part"]
 layout_mode = 0
