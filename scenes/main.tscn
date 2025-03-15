@@ -335,11 +335,15 @@ text = "Press to apply effect
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Variables part legacy" type="Control" parent="TabContainer/maths"]
+[node name="Variables part legacy" type="Control" parent="TabContainer/maths" node_paths=PackedStringArray("mantissa", "exponent", "opt", "nameBox")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("10_cdgyd")
+mantissa = NodePath("mantissa")
+exponent = NodePath("exponent")
+opt = NodePath("Variable selector")
+nameBox = NodePath("Name")
 
 [node name="Variable selector" type="OptionButton" parent="TabContainer/maths/Variables part legacy"]
 layout_mode = 0
@@ -412,13 +416,16 @@ offset_right = 810.0
 offset_bottom = 252.0
 text = "delete var"
 
-[node name="Variables part" type="Control" parent="TabContainer/maths"]
+[node name="Variables part" type="Control" parent="TabContainer/maths" node_paths=PackedStringArray("numText", "opt", "nameBox")]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("11_18ykq")
+numText = NodePath("Number")
+opt = NodePath("Variable selector")
+nameBox = NodePath("Name")
 
 [node name="Variable selector" type="OptionButton" parent="TabContainer/maths/Variables part"]
 layout_mode = 0
@@ -908,10 +915,10 @@ text = "Enable swapping of stat order"
 [connection signal="button_down" from="TabContainer/Edit stats/Create stats/Button" to="TabContainer/Edit stats/Create stats" method="pressed"]
 [connection signal="manipulate" from="TabContainer/Edit stats/Manipulate stats" to="TabContainer/Edit stats" method="manipulateS"]
 [connection signal="button_down" from="TabContainer/Edit stats/Manipulate stats/Button" to="TabContainer/Edit stats/Manipulate stats" method="pressed"]
-[connection signal="button_down" from="TabContainer/maths/Variables part legacy/create or edit var button" to="." method="createEditVariable"]
-[connection signal="button_down" from="TabContainer/maths/Variables part legacy/delete var" to="." method="deleteVariable"]
-[connection signal="button_down" from="TabContainer/maths/Variables part/create or edit var button" to="." method="createEditVariable"]
-[connection signal="button_down" from="TabContainer/maths/Variables part/delete var" to="." method="deleteVariable"]
+[connection signal="button_down" from="TabContainer/maths/Variables part legacy/create or edit var button" to="TabContainer/maths/Variables part legacy" method="pressed"]
+[connection signal="button_down" from="TabContainer/maths/Variables part legacy/delete var" to="TabContainer/maths/Variables part legacy" method="d"]
+[connection signal="button_down" from="TabContainer/maths/Variables part/create or edit var button" to="TabContainer/maths/Variables part" method="pressed"]
+[connection signal="button_down" from="TabContainer/maths/Variables part/delete var" to="TabContainer/maths/Variables part" method="d"]
 [connection signal="button_down" from="TabContainer/maths/calculations legacy/Create_edit_step_button" to="." method="createEditStep"]
 [connection signal="button_down" from="TabContainer/maths/calculations legacy/delete step" to="." method="deleteStep"]
 [connection signal="button_down" from="TabContainer/maths/calculations legacy/Legacy input system2/calculation button" to="." method="calculateThroughSteps"]
