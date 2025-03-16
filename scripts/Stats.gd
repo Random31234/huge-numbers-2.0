@@ -92,11 +92,16 @@ func swapFunction(i:int):
 
 func appendStat(b:Big,n:String):
 	if(maths.searchStringInArray(maths.keywords,n) ):
-		errorBox.text +="Error name for new stat matches keyword, please use a different name"
+		errorBox.text +='\n'+"Error name for new stat matches keyword, please use a different name"
 		return
 	if(maths.searchStringInArray(names,n)):
-		errorBox.text +="Error, name for new stat matches an existing stat name, please use a different name"
+		errorBox.text +='\n'+"Error, name for new stat matches an existing stat name, please use a different name"
 		return
+	if(maths.searchStringInArray(maths.m.varNames,n)):
+		
+		errorBox.text +='\n'+ "Error, name for new matches an existing math's variable name, please refrain from creating a stat with the name of an existing variable."
+		return
+	
 	
 	names.append(n)
 	

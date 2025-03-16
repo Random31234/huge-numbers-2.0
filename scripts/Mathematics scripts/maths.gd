@@ -6,6 +6,7 @@ class_name mathsStorage
 @export var keywords:Array[String]
 @export var i:int
 @export var swappable:bool
+@export var textBox:TextEdit
 var b:Big
 signal vars(b:Array[Big],n:Array[String],s:bool)
 # Called when the node enters the scene tree for the first time.
@@ -18,6 +19,7 @@ func _ready() -> void:
 	#vale.varVal = b
 	#maths.append(vale)
 	m = math.new()
+	updateVarOptions()
 	pass
 
 
@@ -32,15 +34,31 @@ func searchForMath(s:String)->math:
 
 func updateVarOptions():
 	
-	emit_signal("vars",m.varVal,m.varNames)
-	pass
+	emit_signal("vars",m.varVal,m.varNames,swappable)
 
 
 func setVariable(b:Big,n:String,i:int):
+	#conditions to go through first
+	if(searchStringInArray(m.varNames,n)):
+		if(m.varNames.size() <=i):
+			
+			textBox.text += '\n'+"Error, var name exists already, please use a different name"
+			return
+		if(m.varNames[i] != n):
+			
+			textBox.text +='\n' +"Error, var name exists already, please use a different name"
+			return
+	if(searchStringInArray(stat.names,n)):
+		
+		
+		textBox.text +='\n' +"Error, stat name exists already, please use a different name for the variable"
+		return
 	
-	m.varNames.append("test")
-	m.varVal.append(Big.new(1,0))
-	
+	if(searchStringInArray(keywords,n)):
+		
+		
+		textBox.text += '\n' +"Error, attempted to create a variable that has the same name as a keyword, please use different var name"
+		return
 	print(n)
 	print(m.varVal.size())
 	print(i)
@@ -64,6 +82,10 @@ func deleteVariable(i:int):
 	m.varVal.remove_at(i)
 	updateVarOptions()
 
+
+func _on_maths_swap(i: int, f: int) -> void:
+	pass # Replace with function body.
+
 func swappableT(b:bool):
 	swappable = b
 	updateVarOptions()
@@ -84,7 +106,8 @@ func performCalculation(ma:math):
 	
 
 func searchStringInArray(a:Array,s:String):
-	
+	if a.size() <=0:
+		return false
 	for x in a:
 		if x == s:
 			return true

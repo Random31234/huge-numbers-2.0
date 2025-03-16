@@ -64,9 +64,10 @@ values = Array[ExtResource("4_kxll6")]([SubResource("Resource_36vgc"), SubResour
 statBox = NodePath("../stats scroll container/VBoxContainer")
 errorBox = NodePath("../Print node/TextEdit")
 
-[node name="math Storage Node" type="Node" parent="." node_paths=PackedStringArray("stat")]
+[node name="math Storage Node" type="Node" parent="." node_paths=PackedStringArray("stat", "textBox")]
 script = ExtResource("2_0oss8")
 stat = NodePath("../stat Storage Node")
+textBox = NodePath("../Print node/TextEdit")
 
 [node name="stats scroll container" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(256, 520)
@@ -326,7 +327,7 @@ layout_mode = 2
 script = ExtResource("10_jxg4m")
 metadata/_tab_index = 1
 
-[node name="Variables part legacy" type="Control" parent="TabContainer/maths" node_paths=PackedStringArray("mantissa", "exponent", "opt", "nameBox")]
+[node name="Variables part legacy" type="Control" parent="TabContainer/maths" node_paths=PackedStringArray("mantissa", "exponent", "opt", "box", "nameBox")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -334,6 +335,7 @@ script = ExtResource("10_cdgyd")
 mantissa = NodePath("mantissa")
 exponent = NodePath("exponent")
 opt = NodePath("Variable selector")
+box = NodePath("variables/VBoxContainer")
 nameBox = NodePath("Name")
 
 [node name="Variable selector" type="OptionButton" parent="TabContainer/maths/Variables part legacy"]
@@ -407,7 +409,7 @@ offset_right = 810.0
 offset_bottom = 252.0
 text = "delete var"
 
-[node name="Variables part" type="Control" parent="TabContainer/maths" node_paths=PackedStringArray("numText", "opt", "nameBox")]
+[node name="Variables part" type="Control" parent="TabContainer/maths" node_paths=PackedStringArray("numText", "opt", "box", "nameBox")]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -416,6 +418,7 @@ offset_bottom = 40.0
 script = ExtResource("11_18ykq")
 numText = NodePath("Number")
 opt = NodePath("Variable selector")
+box = NodePath("variables/VBoxContainer")
 nameBox = NodePath("Name")
 
 [node name="Variable selector" type="OptionButton" parent="TabContainer/maths/Variables part"]
@@ -908,12 +911,17 @@ text = "Enable swapping of stat order"
 [connection signal="button_down" from="TabContainer/Edit stats/Manipulate stats/Button" to="TabContainer/Edit stats/Manipulate stats" method="pressed"]
 [connection signal="delete" from="TabContainer/maths" to="math Storage Node" method="deleteVariable"]
 [connection signal="setVariable" from="TabContainer/maths" to="math Storage Node" method="setVariable"]
+[connection signal="swap" from="TabContainer/maths" to="math Storage Node" method="_on_maths_swap"]
+[connection signal="varUpdate" from="TabContainer/maths" to="TabContainer/maths/Variables part legacy" method="updateVariables"]
+[connection signal="varUpdate" from="TabContainer/maths" to="TabContainer/maths/Variables part" method="updateVariables"]
 [connection signal="delete" from="TabContainer/maths/Variables part legacy" to="TabContainer/maths" method="deleteV"]
 [connection signal="setVariable" from="TabContainer/maths/Variables part legacy" to="TabContainer/maths" method="setV"]
+[connection signal="swap" from="TabContainer/maths/Variables part legacy" to="TabContainer/maths" method="passSwap"]
 [connection signal="button_down" from="TabContainer/maths/Variables part legacy/create or edit var button" to="TabContainer/maths/Variables part legacy" method="pressed"]
 [connection signal="button_down" from="TabContainer/maths/Variables part legacy/delete var" to="TabContainer/maths/Variables part legacy" method="d"]
 [connection signal="delete" from="TabContainer/maths/Variables part" to="TabContainer/maths" method="deleteV"]
 [connection signal="setVariable" from="TabContainer/maths/Variables part" to="TabContainer/maths" method="setV"]
+[connection signal="swap" from="TabContainer/maths/Variables part" to="TabContainer/maths" method="passSwap"]
 [connection signal="button_down" from="TabContainer/maths/Variables part/create or edit var button" to="TabContainer/maths/Variables part" method="pressed"]
 [connection signal="button_down" from="TabContainer/maths/Variables part/delete var" to="TabContainer/maths/Variables part" method="d"]
 [connection signal="button_down" from="TabContainer/maths/calculations legacy/Create_edit_step_button" to="." method="createEditStep"]
@@ -934,3 +942,4 @@ text = "Enable swapping of stat order"
 [connection signal="button_down" from="TabContainer/Save/delete math" to="." method="deleteMaths"]
 [connection signal="item_selected" from="TabContainer/Options/OptionButton" to="TabContainer/Options/OptionButton" method="TopicSelected"]
 [connection signal="toggled" from="TabContainer/Options/Swappable" to="stat Storage Node" method="swappableT"]
+[connection signal="toggled" from="TabContainer/Options/Swappable" to="math Storage Node" method="swappableT"]
