@@ -5,7 +5,7 @@ Current goals:
 	
 	Work on variables input system:
 		This means making the base, then legacy and new variants.
-	
+		Work on checks for existing variables, existing stats and keywords 
 	work on Calculations:
 		Start off with calculation inputs, then calculation base.
 			After completing the inputs system, then work on the system that puts it all together

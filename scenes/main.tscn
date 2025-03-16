@@ -1,18 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://bsvg48syefxe0"]
+[gd_scene load_steps=17 format=3 uid="uid://bsvg48syefxe0"]
 
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="1_7y165"]
 [ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
-[ext_resource type="Script" path="res://scripts/maths.gd" id="2_0oss8"]
+[ext_resource type="Script" path="res://scripts/Mathematics scripts/maths.gd" id="2_0oss8"]
 [ext_resource type="Script" path="res://scripts/documentation.gd" id="2_xlgaw"]
-[ext_resource type="Script" path="res://scripts/math.gd" id="3_i23ap"]
 [ext_resource type="Script" path="res://scripts/bigNumber.gd" id="4_kxll6"]
 [ext_resource type="Script" path="res://scripts/editStats/editStats.gd" id="5_scl5u"]
 [ext_resource type="Script" path="res://scripts/editStats/CreateStatScripts/createStatLegacy.gd" id="6_p6lff"]
 [ext_resource type="Script" path="res://scripts/editStats/CreateStatScripts/createStatNew.gd" id="7_eucbd"]
 [ext_resource type="Script" path="res://scripts/editStats/ManipulateStatsScripts/manipulateStatsLegacy.gd" id="7_q0xo6"]
 [ext_resource type="Script" path="res://scripts/editStats/ManipulateStatsScripts/manipulateStatsNew.gd" id="9_vwndi"]
-[ext_resource type="Script" path="res://scripts/VariableScripts/varLegacy.gd" id="10_cdgyd"]
-[ext_resource type="Script" path="res://scripts/VariableScripts/varNew.gd" id="11_18ykq"]
+[ext_resource type="Script" path="res://scripts/Mathematics scripts/VariableScripts/varLegacy.gd" id="10_cdgyd"]
+[ext_resource type="Script" path="res://scripts/Mathematics scripts/mathPasser.gd" id="10_jxg4m"]
+[ext_resource type="Script" path="res://scripts/Mathematics scripts/VariableScripts/varNew.gd" id="11_18ykq"]
 
 [sub_resource type="Resource" id="Resource_36vgc"]
 script = ExtResource("4_kxll6")
@@ -28,13 +28,6 @@ exponent = 1
 script = ExtResource("4_kxll6")
 mantissa = 1.0
 exponent = 0
-
-[sub_resource type="Resource" id="Resource_wet55"]
-script = ExtResource("3_i23ap")
-varNames = Array[String]([])
-varVal = Array[ExtResource("4_kxll6")]([])
-calculation = ""
-name = ""
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -73,8 +66,6 @@ errorBox = NodePath("../Print node/TextEdit")
 
 [node name="math Storage Node" type="Node" parent="." node_paths=PackedStringArray("stat")]
 script = ExtResource("2_0oss8")
-maths = Array[ExtResource("3_i23ap")]([null, null])
-m = SubResource("Resource_wet55")
 stat = NodePath("../stat Storage Node")
 
 [node name="stats scroll container" type="ScrollContainer" parent="."]
@@ -82,7 +73,6 @@ custom_minimum_size = Vector2(256, 520)
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 520.0
-scroll_deadzone = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="stats scroll container"]
 custom_minimum_size = Vector2(256, 2560)
@@ -333,6 +323,7 @@ text = "Press to apply effect
 
 [node name="maths" type="Control" parent="TabContainer"]
 layout_mode = 2
+script = ExtResource("10_jxg4m")
 metadata/_tab_index = 1
 
 [node name="Variables part legacy" type="Control" parent="TabContainer/maths" node_paths=PackedStringArray("mantissa", "exponent", "opt", "nameBox")]
@@ -462,17 +453,6 @@ offset_right = 810.0
 offset_bottom = 135.0
 text = "Create var"
 
-[node name="variables" type="ScrollContainer" parent="TabContainer/maths/Variables part"]
-layout_mode = 0
-offset_left = 618.0
-offset_top = 252.0
-offset_right = 810.0
-offset_bottom = 380.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/maths/Variables part/variables"]
-custom_minimum_size = Vector2(192, 2560)
-layout_mode = 2
-
 [node name="delete var" type="Button" parent="TabContainer/maths/Variables part"]
 modulate = Color(1, 0, 0, 1)
 custom_minimum_size = Vector2(128, 32)
@@ -482,6 +462,16 @@ offset_top = 220.0
 offset_right = 810.0
 offset_bottom = 252.0
 text = "delete var"
+
+[node name="variables" type="ScrollContainer" parent="TabContainer/maths/Variables part"]
+offset_left = 618.0
+offset_top = 252.0
+offset_right = 810.0
+offset_bottom = 380.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/maths/Variables part/variables"]
+custom_minimum_size = Vector2(192, 2560)
+layout_mode = 2
 
 [node name="calculations legacy" type="Control" parent="TabContainer/maths"]
 anchors_preset = 0
@@ -902,6 +892,7 @@ text = "Enable swapping of stat order"
 
 [connection signal="button_down" from="Print node/Button" to="." method="printStats"]
 [connection signal="updateList" from="stat Storage Node" to="TabContainer/Edit stats" method="updateManipulateStatsOptions"]
+[connection signal="vars" from="math Storage Node" to="TabContainer/maths" method="varUpdates"]
 [connection signal="button_down" from="Termination button" to="." method="terminateSession"]
 [connection signal="append" from="TabContainer/Edit stats" to="stat Storage Node" method="appendStat"]
 [connection signal="manipulate" from="TabContainer/Edit stats" to="stat Storage Node" method="manipulateStat"]
@@ -915,8 +906,14 @@ text = "Enable swapping of stat order"
 [connection signal="button_down" from="TabContainer/Edit stats/Create stats/Button" to="TabContainer/Edit stats/Create stats" method="pressed"]
 [connection signal="manipulate" from="TabContainer/Edit stats/Manipulate stats" to="TabContainer/Edit stats" method="manipulateS"]
 [connection signal="button_down" from="TabContainer/Edit stats/Manipulate stats/Button" to="TabContainer/Edit stats/Manipulate stats" method="pressed"]
+[connection signal="delete" from="TabContainer/maths" to="math Storage Node" method="deleteVariable"]
+[connection signal="setVariable" from="TabContainer/maths" to="math Storage Node" method="setVariable"]
+[connection signal="delete" from="TabContainer/maths/Variables part legacy" to="TabContainer/maths" method="deleteV"]
+[connection signal="setVariable" from="TabContainer/maths/Variables part legacy" to="TabContainer/maths" method="setV"]
 [connection signal="button_down" from="TabContainer/maths/Variables part legacy/create or edit var button" to="TabContainer/maths/Variables part legacy" method="pressed"]
 [connection signal="button_down" from="TabContainer/maths/Variables part legacy/delete var" to="TabContainer/maths/Variables part legacy" method="d"]
+[connection signal="delete" from="TabContainer/maths/Variables part" to="TabContainer/maths" method="deleteV"]
+[connection signal="setVariable" from="TabContainer/maths/Variables part" to="TabContainer/maths" method="setV"]
 [connection signal="button_down" from="TabContainer/maths/Variables part/create or edit var button" to="TabContainer/maths/Variables part" method="pressed"]
 [connection signal="button_down" from="TabContainer/maths/Variables part/delete var" to="TabContainer/maths/Variables part" method="d"]
 [connection signal="button_down" from="TabContainer/maths/calculations legacy/Create_edit_step_button" to="." method="createEditStep"]
