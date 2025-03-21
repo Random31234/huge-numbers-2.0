@@ -493,7 +493,6 @@ layout_mode = 2
 offset_top = 252.0
 offset_right = 512.0
 offset_bottom = 380.0
-text = "1+1"
 
 [node name="output position" type="OptionButton" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
