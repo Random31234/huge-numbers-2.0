@@ -91,16 +91,22 @@ func swappableT(b:bool):
 	updateVarOptions()
 
 
-func performActiveMathematics():
-	performCalculation(m)
-	pass
+#adjust this function for later
+
+#func performActiveMathematics():
+#	performCalculation(m)
+#	pass
 
 
 #helper functions
 
-func performCalculation(ma:math):
+func performCalculation(input:Big,maths:String):
 	
 	#get logic here.
+	
+	print(input.toScientific())
+	
+	print(maths)
 	
 	updateVarOptions()
 	
