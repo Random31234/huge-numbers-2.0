@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bsvg48syefxe0"]
+[gd_scene load_steps=21 format=3 uid="uid://bsvg48syefxe0"]
 
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="1_7y165"]
 [ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/VariableScripts/varLegacy.gd" id="10_cdgyd"]
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/mathPasser.gd" id="10_jxg4m"]
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/VariableScripts/varNew.gd" id="11_18ykq"]
+[ext_resource type="Script" path="res://scripts/Mathematics scripts/Calculations signals system/calculations_legacy.gd" id="12_7ghhh"]
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/Calculations signals system/calculationLegacyInput.gd" id="12_exr4d"]
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/Calculations signals system/calculationInputNew.gd" id="13_wpl6n"]
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/Calculations signals system/calculationsNew.gd" id="14_ja5hq"]
@@ -95,7 +96,7 @@ layout_mode = 0
 offset_left = 342.0
 offset_right = 1152.0
 offset_bottom = 648.0
-current_tab = 3
+current_tab = 1
 
 [node name="Edit stats" type="Control" parent="TabContainer"]
 visible = false
@@ -326,7 +327,6 @@ text = "Press to apply effect
 "
 
 [node name="maths" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 script = ExtResource("10_jxg4m")
 metadata/_tab_index = 1
@@ -481,17 +481,19 @@ offset_bottom = 380.0
 custom_minimum_size = Vector2(192, 2560)
 layout_mode = 2
 
-[node name="calculations legacy" type="Control" parent="TabContainer/maths"]
-visible = false
+[node name="calculations legacy" type="Control" parent="TabContainer/maths" node_paths=PackedStringArray("mathBox")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("12_7ghhh")
+mathBox = NodePath("RichTextLabel")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 2
 offset_top = 252.0
 offset_right = 512.0
 offset_bottom = 380.0
+text = "1+1"
 
 [node name="output position" type="OptionButton" parent="TabContainer/maths/calculations legacy"]
 layout_mode = 0
@@ -855,6 +857,7 @@ offset_bottom = 151.0
 text = "Delete math"
 
 [node name="Options" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -940,10 +943,13 @@ text = "Enable swapping of stat order"
 [connection signal="swap" from="TabContainer/maths/Variables part" to="TabContainer/maths" method="passSwap"]
 [connection signal="button_down" from="TabContainer/maths/Variables part/create or edit var button" to="TabContainer/maths/Variables part" method="pressed"]
 [connection signal="button_down" from="TabContainer/maths/Variables part/delete var" to="TabContainer/maths/Variables part" method="d"]
+[connection signal="calculate" from="TabContainer/maths/calculations legacy" to="math Storage Node" method="performCalculation"]
 [connection signal="button_down" from="TabContainer/maths/calculations legacy/Create_edit_step_button" to="." method="createEditStep"]
 [connection signal="button_down" from="TabContainer/maths/calculations legacy/delete step" to="." method="deleteStep"]
+[connection signal="input" from="TabContainer/maths/calculations legacy/Legacy input system2" to="TabContainer/maths/calculations legacy" method="calc"]
 [connection signal="button_down" from="TabContainer/maths/calculations legacy/Legacy input system2/calculation button" to="TabContainer/maths/calculations legacy/Legacy input system2" method="pressed"]
-[connection signal="button_down" from="TabContainer/maths/calculations legacy/input system/calculation button" to="." method="calculateThroughSteps"]
+[connection signal="input" from="TabContainer/maths/calculations legacy/input system" to="TabContainer/maths/calculations legacy" method="calc"]
+[connection signal="button_down" from="TabContainer/maths/calculations legacy/input system/calculation button" to="TabContainer/maths/calculations legacy/input system" method="pressed"]
 [connection signal="calculate" from="TabContainer/maths/calculations" to="math Storage Node" method="performCalculation"]
 [connection signal="input" from="TabContainer/maths/calculations/Legacy input system2" to="TabContainer/maths/calculations" method="calc"]
 [connection signal="button_down" from="TabContainer/maths/calculations/Legacy input system2/calculation button" to="TabContainer/maths/calculations/Legacy input system2" method="pressed"]
