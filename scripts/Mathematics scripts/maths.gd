@@ -29,6 +29,11 @@ func _ready() -> void:
 	#vale.varVal = b
 	#maths.append(vale)
 	m = math.new()
+	tempVar1 = Big.new(0,0)
+	tempVar2 = Big.new(0,0)
+	tempVar3 = Big.new(0,0)
+	tempVar4 = Big.new(0,0)
+	tempVar5 = Big.new(0,0)
 	updateVarOptions()
 	pass
 
@@ -47,7 +52,7 @@ func updateVarOptions():
 	emit_signal("vars",m.varVal,m.varNames,swappable)
 
 
-func setVariable(b:Big,n:String,i:int):
+func setVariable(d:Big,n:String,i:int):
 	#conditions to go through first
 	if(searchStringInArrayB(m.varNames,n)):
 		if(m.varNames.size() <=i):
@@ -76,12 +81,12 @@ func setVariable(b:Big,n:String,i:int):
 		print("appending values")
 		
 		m.varNames.append(n)
-		m.varVal.append(b)
+		m.varVal.append(d)
 		updateVarOptions()
 		return
 	print("editing existing value")
 	m.varNames[i] = n
-	m.varVal[i] = b
+	m.varVal[i] = d
 	updateVarOptions()
 
 func deleteVariable(i:int):
@@ -119,18 +124,25 @@ func performCalculation(input:Big,maths:String):
 	print(maths)
 	var g:PackedStringArray
 	g = maths.split(" ", false)
+	b = input
 	#make sure to make note on new lines to add a space before.
 	print(g[1])
-	calcThroughSteps(input,g)
+	calcThroughSteps(g)
 	updateVarOptions()
 	
 
-func calcThroughSteps(input:Big,g:PackedStringArray):
+func calcThroughSteps(g:PackedStringArray):
+	#note b = input
+	var valueSet:bool
+	valueSet =false
 	var t:Big
 	t = Big.new(0,0)
 	for x in g:
-		pass
-	
+		if(valueSet == false):
+			t = getBig(x)
+			valueSet = true
+		if(valueSet == true):
+			pass
 	pass
 
 
@@ -166,3 +178,68 @@ func systematicremoval(a:Array[String], s:String):
 			systematicremoval(a,s)
 			return
 		x+=1
+
+
+func checkBig(s:String):
+	if(searchStringInArrayI(keywords,s)==4):
+		return true
+	if(searchStringInArrayI(keywords,s)==3):
+		return true
+	if(searchStringInArrayI(keywords,s)==2):
+		return true
+	if(searchStringInArrayI(keywords,s)==1):
+		return true
+	if(searchStringInArrayI(keywords,s)==0):
+		return true
+	if(searchStringInArrayI(keywords,s)==5):
+		return true
+	
+	if(searchStringInArrayI(stat.names, s)!= -1):
+		return true
+	if(searchStringInArrayI(m.varNames, s)!= -1):
+		return true
+	return false
+	
+
+
+
+func getBig(s:String):
+	if(searchStringInArrayI(keywords,s)==4):
+		return tempVar5
+	if(searchStringInArrayI(keywords,s)==3):
+		return tempVar4
+	if(searchStringInArrayI(keywords,s)==2):
+		return tempVar3
+	if(searchStringInArrayI(keywords,s)==1):
+		return tempVar2
+	if(searchStringInArrayI(keywords,s)==0):
+		return tempVar1
+	if(searchStringInArrayI(keywords,s)==5):
+		return b
+	
+	if(searchStringInArrayI(stat.names, s)!= -1):
+		return stat.values[searchStringInArrayI(stat.names,s)]
+	if(searchStringInArrayI(m.varNames, s)!= -1):
+		return m.varval[searchStringInArrayI(m.varnames,s)]
+	return Big.new(0,0)
+	
+
+func setBig(s:String,y:Big):
+	if(searchStringInArrayI(keywords,s)==4):
+		tempVar5 =y
+	if(searchStringInArrayI(keywords,s)==3):
+		tempVar4 =y
+	if(searchStringInArrayI(keywords,s)==2):
+		tempVar3 =y
+	if(searchStringInArrayI(keywords,s)==1):
+		tempVar2 =y
+	if(searchStringInArrayI(keywords,s)==0):
+		tempVar1 =y
+	if(searchStringInArrayI(keywords,s)==5):
+		b =y
+	
+	if(searchStringInArrayI(stat.names, s)!= -1):
+		stat.values[searchStringInArrayI(stat.names,s)] = y
+	if(searchStringInArrayI(m.varNames, s)!= -1):
+		m.varval[searchStringInArrayI(m.varnames,s)] =y
+	pass
