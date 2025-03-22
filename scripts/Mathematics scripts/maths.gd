@@ -8,6 +8,16 @@ class_name mathsStorage
 @export var swappable:bool
 @export var textBox:TextEdit
 var b:Big
+#temp vars that can be used accordingly
+var tempVar1:Big
+var tempVar2:Big
+var tempVar3:Big
+var tempVar4:Big
+var tempVar5:Big
+
+
+
+
 signal vars(b:Array[Big],n:Array[String],s:bool)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,7 +49,7 @@ func updateVarOptions():
 
 func setVariable(b:Big,n:String,i:int):
 	#conditions to go through first
-	if(searchStringInArray(m.varNames,n)):
+	if(searchStringInArrayB(m.varNames,n)):
 		if(m.varNames.size() <=i):
 			
 			textBox.text += '\n'+"Error, var name exists already, please use a different name"
@@ -48,13 +58,13 @@ func setVariable(b:Big,n:String,i:int):
 			
 			textBox.text +='\n' +"Error, var name exists already, please use a different name"
 			return
-	if(searchStringInArray(stat.names,n)):
+	if(searchStringInArrayB(stat.names,n)):
 		
 		
 		textBox.text +='\n' +"Error, stat name exists already, please use a different name for the variable"
 		return
 	
-	if(searchStringInArray(keywords,n)):
+	if(searchStringInArrayB(keywords,n)):
 		
 		
 		textBox.text += '\n' +"Error, attempted to create a variable that has the same name as a keyword, please use different var name"
@@ -101,17 +111,33 @@ func swappableT(b:bool):
 #helper functions
 
 func performCalculation(input:Big,maths:String):
-	
+	var x =0
 	#get logic here.
 	
 	print(input.toScientific())
 	
 	print(maths)
-	
+	var g:PackedStringArray
+	g = maths.split(" ", false)
+	#make sure to make note on new lines to add a space before.
+	print(g[1])
+	calcThroughSteps(input,g)
 	updateVarOptions()
 	
 
-func searchStringInArray(a:Array,s:String):
+func calcThroughSteps(input:Big,g:PackedStringArray):
+	var t:Big
+	t = Big.new(0,0)
+	for x in g:
+		pass
+	
+	pass
+
+
+
+#helper functions
+
+func searchStringInArrayB(a:Array,s:String):
 	if a.size() <=0:
 		return false
 	for x in a:
@@ -119,3 +145,24 @@ func searchStringInArray(a:Array,s:String):
 			return true
 	
 	return false
+
+func searchStringInArrayI(a:Array,s:String):
+	if a.size() <=0:
+		return -1
+	var z =0
+	for x in a:
+		
+		if x == s:
+			return z
+		z+=1
+	
+	return -1
+
+func systematicremoval(a:Array[String], s:String):
+	var x =0
+	for g in a:
+		if g == s:
+			a.remove_at(x)
+			systematicremoval(a,s)
+			return
+		x+=1
