@@ -153,6 +153,8 @@ func calcThroughSteps(g:PackedStringArray):
 	braceCounter = 0
 	t = Big.new(0,0)
 	for x in g:
+		print(x)
+		print(isSkipping)
 		if(isSkipping == true):
 			
 			if(x == "{"):
@@ -164,7 +166,7 @@ func calcThroughSteps(g:PackedStringArray):
 			
 			continue
 		
-		print(x)
+		
 		print(t.toScientific())
 		if(valueSet == false):
 			if (searchStringInArrayB(m.varNames,x)):
@@ -182,14 +184,17 @@ func calcThroughSteps(g:PackedStringArray):
 				continue
 		if(valueSet == true):
 			if (searchStringInArrayI(keywords,x) >= 10 && searchStringInArrayI(keywords,x) <=14):
-				
+				print("performing comparison: ")
 				if (comparator(t,symbol,x)):
 					isSkipping = false
 					valueSet = false
+					print(" true ")
 					continue
 				if(comparator(t,symbol,x) == false):
 					isSkipping = true
 					valueSet = false
+					print(" false ")
+					continue
 			
 			if(symbol != ""):
 				t =doStep(t,symbol,x)
