@@ -183,7 +183,7 @@ func calcThroughSteps(g:PackedStringArray):
 				valueSet = true
 				continue
 		if(valueSet == true):
-			if (searchStringInArrayI(keywords,symbol) >= 10 && searchStringInArrayI(keywords,symbol) <=14):
+			if (searchStringInArrayI(keywords,x) >= 10 && searchStringInArrayI(keywords,x) <=14):
 				print("performing comparison: ")
 				if (comparator(t,symbol,x)):
 					isSkipping = false
@@ -205,6 +205,7 @@ func calcThroughSteps(g:PackedStringArray):
 					continue
 				symbol = ""
 			if(symbol == ""):
+				if(searchStringInArrayI(keywords,x)>14):
 					symbol = x
 					print(symbol)
 			
@@ -216,7 +217,6 @@ func calcThroughSteps(g:PackedStringArray):
 
 func doStep(t:Big,s:String,x:String):
 	print("Doing step")
-	print(checkBig(x))
 	#work on neutralizer equations
 	if(checkBig(x) == false):
 		return t
@@ -255,13 +255,9 @@ func doStep(t:Big,s:String,x:String):
 	
 
 func comparator(t:Big,s:String,x:String):
-	print(str(checkBig(x)) + "check result")
-	print(searchStringInArrayI(stat.names, x))
-	print(x)
+	if(checkBig(x) == false):
+		return false
 	if(checkBig(x) == true):
-		print (t.toScientific() + " Test c")
-		print(getBig(x).toScientific() +" Test c")
-		
 		if(s== "=="):
 			if(t.isEqualTo(getBig(x))):
 				return true
