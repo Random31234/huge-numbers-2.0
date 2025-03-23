@@ -153,6 +153,17 @@ func calcThroughSteps(g:PackedStringArray):
 	braceCounter = 0
 	t = Big.new(0,0)
 	for x in g:
+		if(isSkipping == true):
+			
+			if(x == "{"):
+				braceCounter +=1
+			if(x == "}"):
+				braceCounter -=1
+				if(braceCounter == 0):
+					isSkipping = false
+			
+			continue
+		
 		print(x)
 		print(t.toScientific())
 		if(valueSet == false):
