@@ -141,8 +141,7 @@ func calcThroughSteps(g:PackedStringArray):
 	var symbol:String
 	symbol = ""
 	var valueSet:bool
-	var braceCounter:int
-	braceCounter = 0
+	
 	valueSet =false
 	var isIf:bool
 	isIf = false
