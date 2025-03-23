@@ -124,14 +124,10 @@ func performCalculation(input:Big,maths:String):
 	var x =0
 	#get logic here.
 	
-	print(input.toScientific())
-	
-	print(maths)
 	var g:PackedStringArray
 	g = maths.split(" ", false)
 	b = input
 	#make sure to make note on new lines to add a space before.
-	print(g[1])
 	calcThroughSteps(g)
 	updateVarOptions()
 	stat.updateStats()
@@ -165,7 +161,10 @@ func calcThroughSteps(g:PackedStringArray):
 					isSkipping = false
 			
 			continue
-		
+		if( x == "{"):
+			continue
+		if(x == "}"):
+			continue
 		
 		print(t.toScientific())
 		if(valueSet == false):
@@ -183,20 +182,17 @@ func calcThroughSteps(g:PackedStringArray):
 				valueSet = true
 				continue
 		if(valueSet == true):
-			if (searchStringInArrayI(keywords,x) >= 10 && searchStringInArrayI(keywords,x) <=14):
-				print("performing comparison: ")
-				if (comparator(t,symbol,x)):
-					isSkipping = false
-					valueSet = false
-					print(" true ")
-					continue
-				if(comparator(t,symbol,x) == false):
-					isSkipping = true
-					valueSet = false
-					print(" false ")
-					continue
 			
-			if(symbol != ""):
+			if(searchStringInArrayI(keywords,symbol) <15 && searchStringInArrayI(keywords,symbol) >= 10):
+				valueSet = false
+				if(comparator(t, symbol,x)):
+					print("condition is true!")
+					symbol = ""
+					continue
+				symbol = ""
+				isSkipping = true
+			
+			if(searchStringInArrayI(keywords,symbol) >=15):
 				t =doStep(t,symbol,x)
 				
 				if(symbol == "="):
@@ -205,7 +201,7 @@ func calcThroughSteps(g:PackedStringArray):
 					continue
 				symbol = ""
 			if(symbol == ""):
-				if(searchStringInArrayI(keywords,x)>14):
+				if(searchStringInArrayI(keywords,x)>6):
 					symbol = x
 					print(symbol)
 			
