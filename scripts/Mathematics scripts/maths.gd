@@ -19,7 +19,6 @@ var tempVar3:Big
 var tempVar4:Big
 var tempVar5:Big
 
-var braceCounter:int
 
 
 
@@ -149,7 +148,6 @@ func calcThroughSteps(g:PackedStringArray):
 	var isSkipping:bool
 	isSkipping = false
 	var t:Big
-	braceCounter = 0
 	t = Big.new(0,0)
 	for x in g:
 		print(x)
@@ -180,23 +178,8 @@ func calcThroughSteps(g:PackedStringArray):
 				valueSet = true
 				continue
 		if(valueSet == true):
-			if (searchStringInArrayI(keywords,x) >= 10 && searchStringInArrayI(keywords,x) <=14):
-				
-				if (comparator(t,symbol,x)):
-					isSkipping = false
-					valueSet = false
-					continue
-				if(comparator(t,symbol,x) == false):
-					isSkipping = true
-					valueSet = false
-			
 			if(symbol != ""):
 				t =doStep(t,symbol,x)
-				
-				if(symbol == "="):
-					valueSet = false
-					symbol = ""
-					continue
 				symbol = ""
 			if(symbol == ""):
 				if(searchStringInArrayI(keywords,x)>15):
@@ -211,7 +194,6 @@ func calcThroughSteps(g:PackedStringArray):
 
 func doStep(t:Big,s:String,x:String):
 	print("Doing step")
-	#work on neutralizer equations
 	if(checkBig(x) == false):
 		return
 	if(checkBig(x) == true):
@@ -236,44 +218,13 @@ func doStep(t:Big,s:String,x:String):
 		if(s == "√"):
 			t =t.power(t,t.divide(1,getBig(x)))
 			return t
-		if(s == "~"):
-			t = t.BigRandomizer(t,getBig(x))
-			return t
 		if(s == "="):
 			setBig(x,t)
 			print("setting equal to " + t.toScientific())
 			print(getBig(x).toScientific())
 			return t
-			
 	s =""
 	
-
-func comparator(t:Big,s:String,x:String):
-	if(checkBig(x) == false):
-		return false
-	if(checkBig(x) == true):
-		if(s== "=="):
-			if(t.isEqualTo(getBig(x))):
-				return true
-		if(s== ">="):
-			if(t.isGreaterThanOrEqualTo(getBig(x))):
-				return true
-		if(s== "<="):
-			if(t.isLessThanOrEqualTo(getBig(x))):
-				return true
-		if(s== "<"):
-			if(t.isLessThan(getBig(x))):
-				return true
-		if(s== ">"):
-			if(t.isGreaterThan(getBig(x))):
-				return true
-	return false
-
-
-
-
-func miscellanousfunctions(s:String,x:String):
-	pass
 
 func searchStringInArrayB(a:Array,s:String):
 	if a.size() <=0:
