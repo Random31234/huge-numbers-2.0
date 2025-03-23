@@ -71,7 +71,7 @@ errorBox = NodePath("../Print node/TextEdit")
 [node name="math Storage Node" type="Node" parent="." node_paths=PackedStringArray("stat", "textBox")]
 script = ExtResource("2_0oss8")
 stat = NodePath("../stat Storage Node")
-keywords = Array[String](["tempvar1", "tempvar2", "tempvar3", "tempvar4", "tempvar5", "input", "execute", "print", "if", "{", "}", ">=", "<=", "==", "<", ">", "+", "-", "*", "/", "^", "√", "~", "=", "+=", "-=", "*=", "/="])
+keywords = Array[String](["tempvar1", "tempvar2", "tempvar3", "tempvar4", "tempvar5", "input", "execute", "print", "{", "}", ">=", "<=", "==", "<", ">", "+", "-", "*", "/", "^", "√", "~", "=", "+=", "-=", "*=", "/="])
 textBox = NodePath("../Print node/TextEdit")
 
 [node name="stats scroll container" type="ScrollContainer" parent="."]

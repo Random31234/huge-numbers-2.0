@@ -183,7 +183,7 @@ func calcThroughSteps(g:PackedStringArray):
 				t =doStep(t,symbol,x)
 				symbol = ""
 			if(symbol == ""):
-				if(searchStringInArrayI(keywords,x)>15):
+				if(searchStringInArrayI(keywords,x)>14):
 					symbol = x
 					print(symbol)
 			
