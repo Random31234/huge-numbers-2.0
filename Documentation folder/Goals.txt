@@ -15,4 +15,6 @@ Current goals:
 		This means making a means to grab the values first, then worry about how to input the information in.
 		
 		
-		Now to finish the project which is to work on calculations system to read the lines and make use of them.
+		Calculations system in of itself is in place, almost entirely, now missing only the print, the execution system
+		and finally the legacy version to finish everything off before finally moving to the save system.
+		
