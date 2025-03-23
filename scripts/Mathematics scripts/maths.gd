@@ -196,7 +196,7 @@ func calcThroughSteps(g:PackedStringArray):
 func doStep(t:Big,s:String,x:String):
 	print("Doing step")
 	if(checkBig(x) == false):
-		return
+		return t
 	if(checkBig(x) == true):
 		if(s == "+"):
 			print(" adding t: " + t.toScientific() + " and x: " + getBig(x).toScientific())
