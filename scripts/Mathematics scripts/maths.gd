@@ -153,17 +153,6 @@ func calcThroughSteps(g:PackedStringArray):
 	for x in g:
 		print(x)
 		print(t.toScientific())
-		if(isSkipping == true):
-			
-			if(x == "{"):
-				braceCounter +=1
-			if(x == "}"):
-				braceCounter -=1
-				if(braceCounter == 0):
-					isSkipping = false
-			
-			continue
-		
 		if(valueSet == false):
 			if (searchStringInArrayB(m.varNames,x)):
 				t = getBig(x)
