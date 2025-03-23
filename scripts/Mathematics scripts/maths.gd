@@ -7,6 +7,10 @@ class_name mathsStorage
 @export var i:int
 @export var swappable:bool
 @export var textBox:TextEdit
+
+
+
+@export var backlog:Dictionary
 var b:Big
 #temp vars that can be used accordingly
 var tempVar1:Big
@@ -129,25 +133,87 @@ func performCalculation(input:Big,maths:String):
 	print(g[1])
 	calcThroughSteps(g)
 	updateVarOptions()
+	stat.updateStats()
 	
 
 func calcThroughSteps(g:PackedStringArray):
 	#note b = input
+	var symbol:String
+	symbol = ""
 	var valueSet:bool
+	
 	valueSet =false
+	var isIf:bool
+	isIf = false
+	var isSkipping:bool
+	isSkipping = false
 	var t:Big
 	t = Big.new(0,0)
 	for x in g:
+		print(x)
+		print(t.toScientific())
 		if(valueSet == false):
-			t = getBig(x)
-			valueSet = true
+			if (searchStringInArrayB(m.varNames,x)):
+				t = getBig(x)
+				valueSet = true
+				continue
+			if (searchStringInArrayB(stat.names,x)):
+				t = getBig(x)
+				valueSet = true
+				
+				continue
+			if(searchStringInArrayI(keywords,x) <=5 && searchStringInArrayI(keywords,x)>=0):
+				t = getBig(x)
+				valueSet = true
+				continue
 		if(valueSet == true):
-			pass
+			if(symbol != ""):
+				t =doStep(t,symbol,x)
+				symbol = ""
+			if(symbol == ""):
+				if(searchStringInArrayI(keywords,x)>15):
+					symbol = x
+					print(symbol)
+			
 	pass
 
 
 
 #helper functions
+
+func doStep(t:Big,s:String,x:String):
+	print("Doing step")
+	if(checkBig(x) == false):
+		return
+	if(checkBig(x) == true):
+		if(s == "+"):
+			print(" adding t: " + t.toScientific() + " and x: " + getBig(x).toScientific())
+			t =t.add(t,getBig(x))
+			
+			print( "output of add " +t.toScientific())
+			return t
+		if(s == "-"):
+			t = t.subtract(t,getBig(x))
+			return t
+		if(s == "*"):
+			t = t.multiply(t,getBig(x))
+			return t
+		if (s == "/"):
+			t = t.divide(t,getBig(x))
+			return t
+		if (s == "^"):
+			t =t.power(t,getBig(x))
+			return t
+		if(s == "√"):
+			t =t.power(t,t.divide(1,getBig(x)))
+			return t
+		if(s == "="):
+			setBig(x,t)
+			print("setting equal to " + t.toScientific())
+			print(getBig(x).toScientific())
+			return t
+	s =""
+	
 
 func searchStringInArrayB(a:Array,s:String):
 	if a.size() <=0:
@@ -220,7 +286,7 @@ func getBig(s:String):
 	if(searchStringInArrayI(stat.names, s)!= -1):
 		return stat.values[searchStringInArrayI(stat.names,s)]
 	if(searchStringInArrayI(m.varNames, s)!= -1):
-		return m.varval[searchStringInArrayI(m.varnames,s)]
+		return m.varVal[searchStringInArrayI(m.varNames,s)]
 	return Big.new(0,0)
 	
 
@@ -241,5 +307,5 @@ func setBig(s:String,y:Big):
 	if(searchStringInArrayI(stat.names, s)!= -1):
 		stat.values[searchStringInArrayI(stat.names,s)] = y
 	if(searchStringInArrayI(m.varNames, s)!= -1):
-		m.varval[searchStringInArrayI(m.varnames,s)] =y
+		m.varVal[searchStringInArrayI(m.varNames,s)] =y
 	pass
