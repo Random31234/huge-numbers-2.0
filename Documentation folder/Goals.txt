@@ -23,3 +23,9 @@ Current goals:
 		Work on patching the the back slash n system to make sure that it is resolved.
 		It is resolved now, by splitting \n off from the main maths.. making it an "empty" function that is automatically removed
 		
+		
+		
+		Of note, heres the functions that are not done yet
+		
+		The calculation legacy system needs work.
+		

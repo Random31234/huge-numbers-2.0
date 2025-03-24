@@ -147,6 +147,11 @@ func calcThroughSteps(g:PackedStringArray):
 	var isSkipping:bool
 	isSkipping = false
 	var t:Big
+	
+	var values:Array[Big]
+	var names:Array[String]
+	var ma:String
+	ma = ""
 	print("Start loop through")
 	print(g.size())
 	var f = 0
@@ -173,6 +178,40 @@ func calcThroughSteps(g:PackedStringArray):
 		if(x == "}"):
 			continue
 		print(searchStringInArrayI(keywords,x))
+		
+		if symbol == "exe":
+			b = getBig(x)
+			var h:PackedStringArray
+			h = ma.split(" ", false)
+			calcThroughSteps(h)
+			
+			m.varNames = names
+			m.varVal = values
+			symbol = ""
+		
+		
+		if(symbol == "execute"):
+			for z in maths:
+				if(z.name == x):
+					
+					symbol = "exe"
+					ma = z.calculation
+					values = m.varVal
+					names = m.varNames
+					m.varNames = z.varNames
+					m.varVal = z.varVal
+			
+			if(symbol == "exe"):
+				continue
+			
+			symbol = ""
+			continue
+		
+		
+		if(x == "execute"):
+			symbol = "execute"
+			continue
+		
 		if(x == "print"):
 			symbol = "print"
 			continue
