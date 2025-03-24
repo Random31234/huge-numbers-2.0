@@ -18,20 +18,25 @@ Topics: //n
 
 Keywords://n
 	
-	All keywords must be seperated from variables or stats with spaces
-	
-	input: This refers to what is inputted into the calculation, this variable is a temporary variable, that is kept between
-	mathematics and will be used in any recursive function.
+	All keywords must be seperated from variables or stats with 1 space do not use more than 1 space
 	//n
-	+:This symbol represents addition
+	If making a new line, make sure to add a space before and after so the program can properly read the terms
 	//n
-	-:This symbol represents subtraction, its handled much like normal order of operations
+	input: This refers to what is inputted into the calculation, this variable is a temporary variable that will often be changed
+	//n
+	tempvar<num>: This keyword represents one of 5 temporary variables that are kept between mathematics, and is used to keep track of variiables that are not kept in stats or more permanent variables it is 1-5
+	//n
+	execute <mathname> <inputtedValue>: This keyword is used to call upon other calculations with the name designated and named, if the inputted value is not an existing value, it will default to 0
+	//n
+	+:This symbol represents addition between two variables
+	//n
+	-:This symbol represents subtraction between two variables
 	//n
 	*:This symbol represents multiplication
 	//n
 	^:This symbol represents being raised to a power. its handled much like normal order of operations
 	//n
-	Rand: This name calls on a random value between two variables
+	~: This symbol calls on a random value between two variables, it is not true random, but close enough for small numbers
 	//n
 	//n
 	//n
