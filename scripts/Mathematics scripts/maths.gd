@@ -179,6 +179,9 @@ func calcThroughSteps(g:PackedStringArray):
 			continue
 		print(searchStringInArrayI(keywords,x))
 		
+		if x == "end":
+			break
+		
 		if symbol == "exe":
 			b = getBig(x)
 			var h:PackedStringArray

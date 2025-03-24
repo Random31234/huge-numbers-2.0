@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bsvg48syefxe0"]
+[gd_scene load_steps=24 format=3 uid="uid://bsvg48syefxe0"]
 
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="1_7y165"]
 [ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
@@ -34,11 +34,16 @@ script = ExtResource("4_kxll6")
 mantissa = 1.0
 exponent = 0
 
+[sub_resource type="Resource" id="Resource_ypscn"]
+script = ExtResource("4_kxll6")
+mantissa = 3.0
+exponent = 0
+
 [sub_resource type="Resource" id="Resource_avi8q"]
 script = ExtResource("4_uvtnh")
-varNames = Array[String]([])
-varVal = Array[ExtResource("4_kxll6")]([])
-calculation = "sr + sr = sr"
+varNames = Array[String](["b"])
+varVal = Array[ExtResource("4_kxll6")]([SubResource("Resource_ypscn")])
+calculation = "input + a + b = dr"
 name = "test"
 
 [node name="Control" type="Control"]
@@ -80,7 +85,7 @@ errorBox = NodePath("../Print node/TextEdit")
 script = ExtResource("2_0oss8")
 maths = Array[ExtResource("4_uvtnh")]([SubResource("Resource_avi8q")])
 stat = NodePath("../stat Storage Node")
-keywords = Array[String](["tempvar1", "tempvar2", "tempvar3", "tempvar4", "tempvar5", "input", "execute", "print", "{", "}", ">=", "<=", "==", "<", ">", "+", "-", "*", "/", "^", "√", "~", "="])
+keywords = Array[String](["tempvar1", "tempvar2", "tempvar3", "tempvar4", "tempvar5", "input", "execute", "print", "{", "}", ">=", "<=", "==", "<", ">", "+", "-", "*", "/", "^", "√", "~", "=", "end"])
 textBox = NodePath("../Print node/TextEdit")
 
 [node name="stats scroll container" type="ScrollContainer" parent="."]
