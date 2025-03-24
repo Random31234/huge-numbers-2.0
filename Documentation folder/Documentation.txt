@@ -5,13 +5,9 @@ Topics: //n
 	Keywords: This topic goes over documented keywords, and what they mean for this program in the context of the mathematics
 	system. Finally one more thing, no variables or stats can be named as any of the keywords or symbols
 	//n
-	Errors: This topic goes over commonly made errors done and what can be done to resolve them
-	//n
-	Limitations: This topic goes over limits that are in place, as the program does have flaws in what it cannot do or 
-	are in place to protect users from themselves. 
+	FAQ:Frequently asked questions will go here.
 	//n 
 	recommendations: This topic will go over what is recommended to be done with the mathematics system
-	
 	//n
 	Settings: This topic goes over the various settings. 
 	
