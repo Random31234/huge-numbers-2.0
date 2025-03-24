@@ -127,6 +127,7 @@ func performCalculation(input:Big,maths:String):
 	var g:PackedStringArray
 	g = maths.split(" ", false)
 	b = input
+	m.calculation = maths
 	#make sure to make note on new lines to add a space before.
 	calcThroughSteps(g)
 	updateVarOptions()
@@ -166,6 +167,14 @@ func calcThroughSteps(g:PackedStringArray):
 		if(x == "}"):
 			continue
 		
+		if(searchStringInArrayI(keywords,x) == 7):
+			symbol == "print"
+			
+			continue
+		if(symbol == "print"):
+			textBox.text += x + ": " + getBig(x).toScientific()
+			continue
+		
 		print(t.toScientific())
 		if(valueSet == false):
 			if (searchStringInArrayB(m.varNames,x)):
@@ -191,7 +200,6 @@ func calcThroughSteps(g:PackedStringArray):
 					continue
 				symbol = ""
 				isSkipping = true
-			
 			if(searchStringInArrayI(keywords,symbol) >=15):
 				t =doStep(t,symbol,x)
 				
@@ -274,8 +282,6 @@ func comparator(t:Big,s:String,x:String):
 
 
 
-func miscellanousfunctions(s:String,x:String):
-	pass
 
 func searchStringInArrayB(a:Array,s:String):
 	if a.size() <=0:
