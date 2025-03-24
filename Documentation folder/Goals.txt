@@ -18,3 +18,8 @@ Current goals:
 		Calculations system in of itself is in place, almost entirely, now missing only the print, the execution system
 		and finally the legacy version to finish everything off before finally moving to the save system.
 		
+		
+		
+		Work on patching the the back slash n system to make sure that it is resolved.
+		It is resolved now, by splitting \n off from the main maths.. making it an "empty" function that is automatically removed
+		

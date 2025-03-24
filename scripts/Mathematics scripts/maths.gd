@@ -147,8 +147,14 @@ func calcThroughSteps(g:PackedStringArray):
 	var isSkipping:bool
 	isSkipping = false
 	var t:Big
+	print("Start loop through")
+	print(g.size())
+	var f = 0
+	print("end loop through")
+	print(f)
 	braceCounter = 0
 	t = Big.new(0,0)
+	cleanUpArray(g, '\n')
 	for x in g:
 		print(x)
 		print(isSkipping)
@@ -166,13 +172,17 @@ func calcThroughSteps(g:PackedStringArray):
 			continue
 		if(x == "}"):
 			continue
-		
-		if(searchStringInArrayI(keywords,x) == 7):
-			symbol == "print"
-			
+		print(searchStringInArrayI(keywords,x))
+		if(x == "print"):
+			symbol = "print"
 			continue
+		print("symbol is: "+symbol)
 		if(symbol == "print"):
-			textBox.text += x + ": " + getBig(x).toScientific()
+			print(x.contains('\n'))
+			print("detected big: " + str(checkBig(x)))
+			print(x + ": " + getBig(x).toScientific())
+			textBox.text += x + ": " + getBig(x).toScientific()+ " "
+			symbol = ""
 			continue
 		
 		print(t.toScientific())
@@ -357,6 +367,18 @@ func getBig(s:String):
 		return m.varVal[searchStringInArrayI(m.varNames,s)]
 	return Big.new(0,0)
 	
+
+func cleanUpArray(a:PackedStringArray,s:String):
+	var f =0
+	for t in a:
+		
+		
+		if t == s:
+			a.remove_at(f)
+			cleanUpArray(a,s)
+		if t.contains(s):
+			t.replace('\n',"")
+		f+=1
 
 func setBig(s:String,y:Big):
 	if(searchStringInArrayI(keywords,s)==4):
