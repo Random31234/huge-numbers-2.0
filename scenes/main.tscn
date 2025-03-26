@@ -967,6 +967,7 @@ text = "Enable swapping of stat order"
 
 [connection signal="button_down" from="Print node/Button" to="." method="printStats"]
 [connection signal="updateList" from="stat Storage Node" to="TabContainer/Edit stats" method="updateManipulateStatsOptions"]
+[connection signal="calcUpdate" from="math Storage Node" to="TabContainer/maths" method="displayCalc"]
 [connection signal="vars" from="math Storage Node" to="TabContainer/maths" method="varUpdates"]
 [connection signal="button_down" from="Termination button" to="." method="terminateSession"]
 [connection signal="append" from="TabContainer/Edit stats" to="stat Storage Node" method="appendStat"]
@@ -1014,7 +1015,6 @@ text = "Enable swapping of stat order"
 [connection signal="updateValue" from="TabContainer/maths/calculations/TextEdit" to="TabContainer/maths" method="setCalc"]
 [connection signal="button_down" from="TabContainer/Save/maths/load maths" to="." method="loadMaths"]
 [connection signal="button_down" from="TabContainer/Save/maths/save to new math" to="." method="saveNewMath"]
-[connection signal="button_down" from="TabContainer/Save/maths/delete math" to="." method="deleteMaths"]
 [connection signal="button_down" from="TabContainer/Save/maths/Save calculation" to="." method="saveMath"]
 [connection signal="button_down" from="TabContainer/Save/maths/import calculation" to="TabContainer/Save/maths" method="importFromIEB"]
 [connection signal="button_down" from="TabContainer/Save/maths/export math" to="TabContainer/Save/maths" method="exportToClipboard"]

@@ -4,7 +4,7 @@ extends Node
 @export var s:stats
 @export var iEB:TextEdit
 @export var nameBox:TextEdit
-
+@export var mathsOptions:OptionButton
 
 func exportToClipboard():
 	
@@ -17,11 +17,14 @@ func exportToClipboard():
 func importFromIEB():
 	import(iEB.text)
 
+func deleteMath():
+	m.maths.remove_at(mathsOptions.selected)
+
 
 #helper functions
-func import(s:String):
+func import(e:String):
 	
-	var d = JSON.parse_string(s)
+	var d = JSON.parse_string(e)
 	m.m.calculation = d["calc"]
 	m.m.name = d["name"]
 	m.m.varNames.clear()
@@ -29,10 +32,14 @@ func import(s:String):
 	for z in d["variables"]:
 		print(z)
 		m.m.varNames.append(z)
-		m.m.varVal.append(d["variables"][z])
+		m.m.varVal.append(Big.new(d["variables"][z]))
 	
 	
-	m
+	m.emit_signal("calcUpdate",m.m.calculation)
+	m.updateVarOptions()
+
+
+
 
 func createDictionary():
 	var d:Dictionary
