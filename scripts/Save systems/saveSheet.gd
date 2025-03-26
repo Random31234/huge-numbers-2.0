@@ -5,7 +5,7 @@ extends Node
 @export var iEB:TextEdit
 @export var nameBox:TextEdit
 @export var sheetsOptions:OptionButton
-
+@export var mathsSave:Node
 
 func exportToClipboard():
 	
@@ -55,10 +55,12 @@ func import(e:String):
 				st.append(y)
 				b.append(Big.new(d["maths"][z][y]))
 			m.m = math.new(st,b,m.m.calculation,m.m.name)
+			m.maths.append(m.m)
 	
 	m.emit_signal("calcUpdate",m.m.calculation)
 	m.updateVarOptions()
 	s.updateStats()
+	mathsSave.updateMathsList()
 
 
 

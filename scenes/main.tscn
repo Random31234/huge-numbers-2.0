@@ -794,7 +794,7 @@ offset_right = 810.0
 offset_bottom = 375.0
 text = "Export math to clipboard"
 
-[node name="sheets" type="Control" parent="TabContainer/Save" node_paths=PackedStringArray("s", "m", "iEB", "nameBox", "sheetsOptions")]
+[node name="sheets" type="Control" parent="TabContainer/Save" node_paths=PackedStringArray("s", "m", "iEB", "nameBox", "sheetsOptions", "mathsSave")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -804,6 +804,7 @@ m = NodePath("../../../math Storage Node")
 iEB = NodePath("iEB sheet")
 nameBox = NodePath("Sheet file name")
 sheetsOptions = NodePath("Save selector")
+mathsSave = NodePath("../maths")
 
 [node name="Save stats" type="Button" parent="TabContainer/Save/sheets"]
 modulate = Color(1, 1, 0.501961, 1)
