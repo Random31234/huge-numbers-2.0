@@ -23,6 +23,8 @@ func deleteMath():
 
 func loadMath():
 	m.m = m.maths[mathsOptions.selected]
+	m.emit_signal("calcUpdate",m.m.calculation)
+	m.updateVarOptions()
 
 func saveToMath():
 	m.maths[mathsOptions.selected] = math.new(m.m.varNames,m.m.varVal,m.m.calculation,nameBox.text)
