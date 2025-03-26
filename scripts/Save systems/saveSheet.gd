@@ -7,9 +7,11 @@ extends Node
 @export var sheetsOptions:OptionButton
 @export var mathsSave:Node
 const savePath:String = "user://HugeNumbersSheets/"
+const sheetNamesFile:String = "user://Names.txt"
+@export var sheetNames:PackedStringArray
 
 func _ready() -> void:
-	pass
+	loadSheetNames()
 
 
 func exportToClipboard():
@@ -25,22 +27,35 @@ func importFromIEB():
 
 #the file manipulations
 
+
+#this deletes the sheet
 func deleteSheet():
-	pass
+	sheetNames.remove_at(sheetsOptions.selected)
+	DirAccess.remove_absolute(savePath+sheetsOptions.text+".txt")
+	updateSheetNames()
 
-
+#this loads a sheet
 func loadSheet():
-	pass
+	DirAccess.make_dir_absolute(savePath)
+	var file = FileAccess.open(savePath+sheetsOptions.text+".txt", FileAccess.READ)
+	var content = file.get_as_text()
+	import(content)
+
 
 func saveToSheet():
-	pass
-
+	
+	DirAccess.make_dir_absolute(savePath)
+	var fil = FileAccess.open(savePath+sheetsOptions.text+".txt",FileAccess.WRITE)
+	fil.store_string(createDictionary())
+	sheetNames.append(nameBox.text)
+	updateSheetNames()
 
 func saveNewSheet():
 	DirAccess.make_dir_absolute(savePath)
 	
 	var fil = FileAccess.open(savePath+nameBox.text+".txt",FileAccess.WRITE)
-	fil.store_line(createDictionary())
+	fil.store_string(createDictionary())
+	updateSheetNames()
 
 
 
@@ -80,10 +95,6 @@ func import(e:String):
 
 
 
-func updateSheetsList():
-	pass
-	for z in m.maths:
-		pass
 #creates a dictionary in string form
 func createDictionary():
 	var d:Dictionary
@@ -107,7 +118,30 @@ func createDictionary():
 	print(jstr)
 	return jstr
 
+func updateSheetNames():
+	sheetsOptions.clear()
+	for j in sheetNames:
+		sheetsOptions.add_item(j)
+	
+	var d:Dictionary
+	var x
+	x= 0
+	for y in sheetNames:
+		d[x] = y
+		x+=1
+	var jstr = JSON.stringify(d)
+	
+	var f =FileAccess.open(sheetNamesFile,FileAccess.WRITE)
+	f.store_string(jstr)
 
+func loadSheetNames():
+	DirAccess.make_dir_absolute(sheetNamesFile)
+	var f = FileAccess.open(sheetNamesFile,FileAccess.READ)
+	var jstr = f.get_as_text()
+	var d =JSON.parse_string(jstr)
+	
+	for x in d:
+		sheetNames.append(d[x])
 
 # Get the current contents of the clipboard
 #var current_clipboard = DisplayServer.clipboard_get()
