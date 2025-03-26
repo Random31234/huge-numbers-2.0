@@ -41,7 +41,7 @@ func import(e:String):
 		s.values.clear()
 		for z in d["stats"]:
 			s.names.append(z)
-			s.values.append(Big.new())
+			s.values.append(Big.new(d["stats"][z]))
 	if(d.has("maths")):
 		m.maths.clear()
 		var st:Array[String]

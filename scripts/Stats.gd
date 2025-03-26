@@ -107,7 +107,7 @@ func appendStat(b:Big,n:String):
 	
 	values.append(b)
 	updateStats()
-
+	emit_signal("updateList",names)
 
 func manipulateStat(index:int,funcIndex:int,b:Big):
 	
@@ -142,8 +142,10 @@ func manipulateStat(index:int,funcIndex:int,b:Big):
 			names.remove_at(index)
 			emit_signal("updateList",names)
 	updateStats()
+	emit_signal("updateList",names)
 
 
 func swappableT(b:bool):
 	swappable = b
 	updateStats()
+	emit_signal("updateList",names)

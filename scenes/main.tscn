@@ -1,10 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://bsvg48syefxe0"]
+[gd_scene load_steps=20 format=3 uid="uid://bsvg48syefxe0"]
 
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="1_7y165"]
 [ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/maths.gd" id="2_0oss8"]
 [ext_resource type="Script" path="res://scripts/documentation.gd" id="2_xlgaw"]
-[ext_resource type="Script" path="res://scripts/bigNumber.gd" id="4_kxll6"]
 [ext_resource type="Script" path="res://scripts/editStats/editStats.gd" id="5_scl5u"]
 [ext_resource type="Script" path="res://scripts/editStats/CreateStatScripts/createStatLegacy.gd" id="6_p6lff"]
 [ext_resource type="Script" path="res://scripts/editStats/CreateStatScripts/createStatNew.gd" id="7_eucbd"]
@@ -20,21 +19,6 @@
 [ext_resource type="Script" path="res://scripts/textEditAutoUpdater.gd" id="17_32msq"]
 [ext_resource type="Script" path="res://scripts/Save systems/saveSheet.gd" id="17_c7sd8"]
 [ext_resource type="Script" path="res://scripts/Save systems/saveMath.gd" id="18_7kus2"]
-
-[sub_resource type="Resource" id="Resource_36vgc"]
-script = ExtResource("4_kxll6")
-mantissa = 3.0
-exponent = 23
-
-[sub_resource type="Resource" id="Resource_urerf"]
-script = ExtResource("4_kxll6")
-mantissa = 2.0
-exponent = 1
-
-[sub_resource type="Resource" id="Resource_37l18"]
-script = ExtResource("4_kxll6")
-mantissa = 1.0
-exponent = 0
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -66,8 +50,6 @@ text = "Print stat"
 
 [node name="stat Storage Node" type="Node" parent="." node_paths=PackedStringArray("statBox", "errorBox", "maths")]
 script = ExtResource("1_7y165")
-names = Array[String](["dr", "sr", "a"])
-values = Array[ExtResource("4_kxll6")]([SubResource("Resource_36vgc"), SubResource("Resource_urerf"), SubResource("Resource_37l18")])
 statBox = NodePath("../stats scroll container/VBoxContainer")
 errorBox = NodePath("../Print node/TextEdit")
 maths = NodePath("../math Storage Node")
