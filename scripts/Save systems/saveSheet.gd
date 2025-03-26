@@ -29,14 +29,7 @@ func saveNewMath():
 func import(e:String):
 	
 	var d = JSON.parse_string(e)
-	for z in d["variables"]:
-		print(z)
-		m.m.varNames.append(z)
-		m.m.varVal.append(Big.new(d["variables"][z]))
 	
-	
-	m.emit_signal("calcUpdate",m.m.calculation)
-	m.updateVarOptions()
 
 
 
@@ -50,7 +43,22 @@ func createDictionary():
 	var x
 	x = 0
 	d["stats"] = {}
-
+	for z in s.names:
+		d["Stats"][z] = s.values[x].toScientific()
+		x+=1
+	print(d)
+	d["maths"] = {}
+	x = 0
+	for z in m.maths:
+		d["maths"][z.name] = {}
+		for y in z.varNames:
+			d["maths"][z.name][y] = z.varVal[x].toScientific()
+			x+=1
+		d["maths"][z.name]["calc"] = z.calculation
+	print(d)
+	var jstr =JSON.stringify(d)
+	print(jstr)
+	return jstr
 
 
 

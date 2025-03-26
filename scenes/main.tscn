@@ -75,7 +75,7 @@ maths = NodePath("../math Storage Node")
 [node name="math Storage Node" type="Node" parent="." node_paths=PackedStringArray("stat", "textBox")]
 script = ExtResource("2_0oss8")
 stat = NodePath("../stat Storage Node")
-keywords = Array[String](["tempvar1", "tempvar2", "tempvar3", "tempvar4", "tempvar5", "input", "execute", "print", "{", "}", ">=", "<=", "==", "<", ">", "+", "-", "*", "/", "^", "√", "~", "=", "end"])
+keywords = Array[String](["tempvar1", "tempvar2", "tempvar3", "tempvar4", "tempvar5", "input", "execute", "print", "{", "}", ">=", "<=", "==", "<", ">", "+", "-", "*", "/", "^", "√", "~", "=", "end", "calc"])
 textBox = NodePath("../Print node/TextEdit")
 
 [node name="stats scroll container" type="ScrollContainer" parent="."]
@@ -812,13 +812,16 @@ offset_right = 810.0
 offset_bottom = 375.0
 text = "Export math to clipboard"
 
-[node name="sheets" type="Control" parent="TabContainer/Save" node_paths=PackedStringArray("s", "m")]
+[node name="sheets" type="Control" parent="TabContainer/Save" node_paths=PackedStringArray("s", "m", "iEB", "nameBox", "sheetsOptions")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("17_c7sd8")
 s = NodePath("../../../stat Storage Node")
 m = NodePath("../../../math Storage Node")
+iEB = NodePath("iEB sheet")
+nameBox = NodePath("Sheet file name")
+sheetsOptions = NodePath("Save selector")
 
 [node name="Save stats" type="Button" parent="TabContainer/Save/sheets"]
 modulate = Color(1, 1, 0.501961, 1)
