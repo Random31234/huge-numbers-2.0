@@ -30,3 +30,5 @@ Current goals:
 		The calculation legacy system needs work, make the x function, work on save and load system, Patch the create var/edit var
 		once these things are in place, it will be ready to go.
 		
+		#testing sheet
+		{"maths":{"u":{"b":"4","calc":"asdada"}},"stats":{"y":"2"}}

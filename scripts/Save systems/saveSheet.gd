@@ -62,6 +62,7 @@ func saveNewSheet():
 	
 	var fil = FileAccess.open(savePath+nameBox.text+".txt",FileAccess.WRITE)
 	fil.store_string(createDictionary())
+	sheetNames.append(nameBox.text)
 	updateSheetNames()
 
 
@@ -137,7 +138,7 @@ func updateSheetNames():
 		d[x] = y
 		x+=1
 	var jstr = JSON.stringify(d)
-	
+	print(jstr)
 	var f =FileAccess.open(sheetNamesFile,FileAccess.WRITE)
 	f.store_string(jstr)
 
@@ -146,6 +147,7 @@ func loadSheetNames():
 	if not f:
 		print("file not detected")
 		#this should be the basis for creating the tutorial sheet
+		
 		return
 	if f == null:
 		print("file is null")
@@ -155,6 +157,7 @@ func loadSheetNames():
 	
 	for x in d:
 		sheetNames.append(d[x])
+	updateSheetNames()
 
 # Get the current contents of the clipboard
 #var current_clipboard = DisplayServer.clipboard_get()

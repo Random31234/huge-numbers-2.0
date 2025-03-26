@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://bsvg48syefxe0"]
+[gd_scene load_steps=21 format=3 uid="uid://bsvg48syefxe0"]
 
-[ext_resource type="Script" path="res://scripts/Stats.gd" id="1_7y165"]
+[ext_resource type="Script" path="res://scripts/editStats/Stats.gd" id="1_7y165"]
+[ext_resource type="Script" path="res://scripts/print_node.gd" id="1_jx5fe"]
 [ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/maths.gd" id="2_0oss8"]
 [ext_resource type="Script" path="res://scripts/documentation.gd" id="2_xlgaw"]
@@ -32,6 +33,7 @@ grow_vertical = 2
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_jx5fe")
 
 [node name="TextEdit" type="TextEdit" parent="Print node"]
 layout_mode = 0
@@ -788,6 +790,7 @@ offset_bottom = 309.0
 
 [node name="export math" type="Button" parent="TabContainer/Save/maths"]
 modulate = Color(0.501961, 1, 0.501961, 1)
+layout_mode = 0
 offset_left = 554.0
 offset_top = 312.0
 offset_right = 810.0
@@ -876,6 +879,7 @@ text = "Delete sheet"
 
 [node name="export sheet" type="Button" parent="TabContainer/Save/sheets"]
 modulate = Color(0.501961, 1, 0.501961, 1)
+layout_mode = 0
 offset_left = 555.0
 offset_top = 112.0
 offset_right = 810.0
@@ -995,6 +999,7 @@ text = "Enable swapping of stat order"
 [connection signal="button_down" from="TabContainer/Save/sheets/Save stats" to="TabContainer/Save/sheets" method="saveToSheet"]
 [connection signal="button_down" from="TabContainer/Save/sheets/Import sheet" to="TabContainer/Save/sheets" method="importFromIEB"]
 [connection signal="button_down" from="TabContainer/Save/sheets/load sheet" to="TabContainer/Save/sheets" method="loadSheet"]
+[connection signal="button_down" from="TabContainer/Save/sheets/Save to new sheet" to="TabContainer/Save/sheets" method="saveNewSheet"]
 [connection signal="button_down" from="TabContainer/Save/sheets/Delete sheet" to="TabContainer/Save/sheets" method="deleteSheet"]
 [connection signal="button_down" from="TabContainer/Save/sheets/export sheet" to="TabContainer/Save/sheets" method="exportToClipboard"]
 [connection signal="item_selected" from="TabContainer/Options/OptionButton" to="TabContainer/Options/OptionButton" method="TopicSelected"]
