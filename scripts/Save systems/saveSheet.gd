@@ -36,9 +36,16 @@ func deleteSheet():
 
 #this loads a sheet
 func loadSheet():
-	DirAccess.make_dir_absolute(savePath)
-	var file = FileAccess.open(savePath+sheetsOptions.text+".txt", FileAccess.READ)
-	var content = file.get_as_text()
+	var f = FileAccess.open(savePath+sheetsOptions.text+".txt", FileAccess.READ)
+	if not f:
+		print("file not detected")
+		#this should be the basis for creating the tutorial sheet
+		return
+	if f == null:
+		print("file is null")
+		return
+	
+	var content = f.get_as_text()
 	import(content)
 
 
@@ -135,8 +142,14 @@ func updateSheetNames():
 	f.store_string(jstr)
 
 func loadSheetNames():
-	DirAccess.make_dir_absolute(sheetNamesFile)
 	var f = FileAccess.open(sheetNamesFile,FileAccess.READ)
+	if not f:
+		print("file not detected")
+		#this should be the basis for creating the tutorial sheet
+		return
+	if f == null:
+		print("file is null")
+		return
 	var jstr = f.get_as_text()
 	var d =JSON.parse_string(jstr)
 	
