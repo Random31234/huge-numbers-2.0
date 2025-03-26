@@ -19,7 +19,18 @@ func importFromIEB():
 
 func deleteMath():
 	m.maths.remove_at(mathsOptions.selected)
+	
 
+func loadMath():
+	m.m = m.maths[mathsOptions.selected]
+
+func saveToMath():
+	m.maths[mathsOptions.selected] = m.m
+
+func saveNewMath():
+	m.m.name = nameBox.text
+	
+	m.maths.append(m.m)
 
 #helper functions
 func import(e:String):
