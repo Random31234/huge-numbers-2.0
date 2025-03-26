@@ -738,7 +738,7 @@ script = ExtResource("17_32msq")
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="maths" type="Control" parent="TabContainer/Save" node_paths=PackedStringArray("m", "s", "iEB", "nameBox")]
+[node name="maths" type="Control" parent="TabContainer/Save" node_paths=PackedStringArray("m", "s", "iEB", "nameBox", "mathsOptions")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -747,6 +747,7 @@ m = NodePath("../../../math Storage Node")
 s = NodePath("../../../stat Storage Node")
 iEB = NodePath("iEB math")
 nameBox = NodePath("maths name")
+mathsOptions = NodePath("maths selector")
 
 [node name="maths selector" type="OptionButton" parent="TabContainer/Save/maths"]
 layout_mode = 0

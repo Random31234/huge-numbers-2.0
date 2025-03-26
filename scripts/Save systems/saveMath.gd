@@ -19,18 +19,20 @@ func importFromIEB():
 
 func deleteMath():
 	m.maths.remove_at(mathsOptions.selected)
-	
+	updateMathsList()
 
 func loadMath():
 	m.m = m.maths[mathsOptions.selected]
 
 func saveToMath():
 	m.maths[mathsOptions.selected] = m.m
+	updateMathsList()
 
 func saveNewMath():
 	m.m.name = nameBox.text
 	
 	m.maths.append(m.m)
+	updateMathsList()
 
 #helper functions
 func import(e:String):
@@ -49,7 +51,10 @@ func import(e:String):
 	m.emit_signal("calcUpdate",m.m.calculation)
 	m.updateVarOptions()
 
-
+func updateMathsList():
+	mathsOptions.clear()
+	for z in m.maths:
+		mathsOptions.add_item(z.name)
 
 
 func createDictionary():
