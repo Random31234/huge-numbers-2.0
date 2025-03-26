@@ -73,7 +73,7 @@ func updateStats():
 			i.get_child(1).set_process(4)
 		
 		z+=1
-	
+	emit_signal("updateList",names)
 
 #the actual button functions as practiced is in here.
 func swapFunction(i:int):

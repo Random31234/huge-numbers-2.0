@@ -29,11 +29,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Print node" type="Control" parent="."]
+[node name="Print node" type="Control" parent="." node_paths=PackedStringArray("s", "g")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_jx5fe")
+s = NodePath("../stat Storage Node")
+g = NodePath("TextEdit")
 
 [node name="TextEdit" type="TextEdit" parent="Print node"]
 layout_mode = 0
@@ -49,6 +51,14 @@ offset_top = 520.0
 offset_right = 334.0
 offset_bottom = 648.0
 text = "Print stat"
+
+[node name="Termination button" type="Button" parent="."]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 1120.0
+offset_right = 1152.0
+offset_bottom = 32.0
+text = "X"
 
 [node name="stat Storage Node" type="Node" parent="." node_paths=PackedStringArray("statBox", "errorBox", "maths")]
 script = ExtResource("1_7y165")
@@ -71,14 +81,6 @@ offset_bottom = 520.0
 [node name="VBoxContainer" type="VBoxContainer" parent="stats scroll container"]
 custom_minimum_size = Vector2(256, 2560)
 layout_mode = 2
-
-[node name="Termination button" type="Button" parent="."]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 0
-offset_left = 1120.0
-offset_right = 1152.0
-offset_bottom = 32.0
-text = "X"
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 0
@@ -942,11 +944,11 @@ offset_right = 810.0
 offset_bottom = 92.0
 text = "Enable swapping of stat order"
 
-[connection signal="button_down" from="Print node/Button" to="." method="printStats"]
+[connection signal="button_down" from="Print node/Button" to="Print node" method="displayStats"]
+[connection signal="button_down" from="Termination button" to="." method="terminateSession"]
 [connection signal="updateList" from="stat Storage Node" to="TabContainer/Edit stats" method="updateManipulateStatsOptions"]
 [connection signal="calcUpdate" from="math Storage Node" to="TabContainer/maths" method="displayCalc"]
 [connection signal="vars" from="math Storage Node" to="TabContainer/maths" method="varUpdates"]
-[connection signal="button_down" from="Termination button" to="." method="terminateSession"]
 [connection signal="append" from="TabContainer/Edit stats" to="stat Storage Node" method="appendStat"]
 [connection signal="manipulate" from="TabContainer/Edit stats" to="stat Storage Node" method="manipulateStat"]
 [connection signal="updateStatList" from="TabContainer/Edit stats" to="TabContainer/Edit stats/Manipulate stats legacy" method="updateStatSelection"]
