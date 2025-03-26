@@ -30,8 +30,7 @@ func saveToMath():
 
 func saveNewMath():
 	m.m.name = nameBox.text
-	
-	m.maths.append(m.m)
+	m.maths.append(retMath(m.m))
 	updateMathsList()
 
 #helper functions
@@ -56,6 +55,8 @@ func updateMathsList():
 	for z in m.maths:
 		mathsOptions.add_item(z.name)
 
+func retMath(h:math):
+	return h
 
 func createDictionary():
 	var d:Dictionary

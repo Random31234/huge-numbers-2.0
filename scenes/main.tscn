@@ -1,11 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://bsvg48syefxe0"]
+[gd_scene load_steps=24 format=3 uid="uid://bsvg48syefxe0"]
 
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="1_7y165"]
 [ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/maths.gd" id="2_0oss8"]
 [ext_resource type="Script" path="res://scripts/documentation.gd" id="2_xlgaw"]
 [ext_resource type="Script" path="res://scripts/bigNumber.gd" id="4_kxll6"]
-[ext_resource type="Script" path="res://scripts/Mathematics scripts/math.gd" id="4_uvtnh"]
 [ext_resource type="Script" path="res://scripts/editStats/editStats.gd" id="5_scl5u"]
 [ext_resource type="Script" path="res://scripts/editStats/CreateStatScripts/createStatLegacy.gd" id="6_p6lff"]
 [ext_resource type="Script" path="res://scripts/editStats/CreateStatScripts/createStatNew.gd" id="7_eucbd"]
@@ -36,18 +35,6 @@ exponent = 1
 script = ExtResource("4_kxll6")
 mantissa = 1.0
 exponent = 0
-
-[sub_resource type="Resource" id="Resource_ypscn"]
-script = ExtResource("4_kxll6")
-mantissa = 3.0
-exponent = 0
-
-[sub_resource type="Resource" id="Resource_avi8q"]
-script = ExtResource("4_uvtnh")
-varNames = Array[String](["b"])
-varVal = Array[ExtResource("4_kxll6")]([SubResource("Resource_ypscn")])
-calculation = "input + a + b = dr"
-name = "test"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -87,7 +74,6 @@ maths = NodePath("../math Storage Node")
 
 [node name="math Storage Node" type="Node" parent="." node_paths=PackedStringArray("stat", "textBox")]
 script = ExtResource("2_0oss8")
-maths = Array[ExtResource("4_uvtnh")]([SubResource("Resource_avi8q")])
 stat = NodePath("../stat Storage Node")
 keywords = Array[String](["tempvar1", "tempvar2", "tempvar3", "tempvar4", "tempvar5", "input", "execute", "print", "{", "}", ">=", "<=", "==", "<", ">", "+", "-", "*", "/", "^", "√", "~", "=", "end"])
 textBox = NodePath("../Print node/TextEdit")
