@@ -27,5 +27,6 @@ Current goals:
 		
 		Of note, heres the functions that are not done yet
 		
-		The calculation legacy system needs work.
+		The calculation legacy system needs work, make the x function, work on save and load system, Patch the create var/edit var
+		once these things are in place, it will be ready to go.
 		
