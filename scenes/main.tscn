@@ -1014,7 +1014,7 @@ text = "Enable swapping of stat order"
 [connection signal="button_down" from="TabContainer/Save/sheets/load sheet" to="." method="loadsheet"]
 [connection signal="button_down" from="TabContainer/Save/sheets/Save to new sheet" to="." method="savenewsheet"]
 [connection signal="button_down" from="TabContainer/Save/sheets/Delete sheet" to="." method="deletesheet"]
-[connection signal="button_down" from="TabContainer/Save/sheets/export sheet" to="." method="saveNewMath"]
+[connection signal="button_down" from="TabContainer/Save/sheets/export sheet" to="TabContainer/Save/sheets" method="exportToClipboard"]
 [connection signal="item_selected" from="TabContainer/Options/OptionButton" to="TabContainer/Options/OptionButton" method="TopicSelected"]
 [connection signal="toggled" from="TabContainer/Options/Swappable" to="stat Storage Node" method="swappableT"]
 [connection signal="toggled" from="TabContainer/Options/Swappable" to="math Storage Node" method="swappableT"]

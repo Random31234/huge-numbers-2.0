@@ -7,29 +7,58 @@ extends Node
 @export var sheetsOptions:OptionButton
 
 
-
+func exportToClipboard():
+	
+	
+	iEB.text = createDictionary()
+	
+	DisplayServer.clipboard_set(createDictionary())
 
 func importFromIEB():
 	import(iEB.text)
 
-func deleteMath():
+func deleteSheet():
 	pass
 
 
-func loadMath():
+func loadSheet():
 	pass
 
-func saveToMath():
+func saveToSheet():
 	pass
 
 
-func saveNewMath():
+func saveNewSheet():
 	pass
 
 func import(e:String):
 	
 	var d = JSON.parse_string(e)
+	var h:Dictionary
 	
+	if(d.has("stats")):
+		s.names.clear()
+		s.values.clear()
+		for z in d["stats"]:
+			s.names.append(z)
+			s.values.append(Big.new())
+	if(d.has("maths")):
+		m.maths.clear()
+		var st:Array[String]
+		var b:Array[Big]
+		for z in d["maths"]:
+			m.m.name = z
+			for y in d["maths"][z]:
+				if(y == "calc"):
+					m.m.calculation = d["maths"][z][y]
+					continue
+				st.append(y)
+				b.append(Big.new(d["maths"][z][y]))
+			m.m = math.new(st,b,m.m.calculation,m.m.name)
+	
+	m.emit_signal("calcUpdate",m.m.calculation)
+	m.updateVarOptions()
+	s.updateStats()
 
 
 
@@ -44,7 +73,7 @@ func createDictionary():
 	x = 0
 	d["stats"] = {}
 	for z in s.names:
-		d["Stats"][z] = s.values[x].toScientific()
+		d["stats"][z] = s.values[x].toScientific()
 		x+=1
 	print(d)
 	d["maths"] = {}
