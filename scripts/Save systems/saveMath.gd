@@ -25,11 +25,12 @@ func loadMath():
 	m.m = m.maths[mathsOptions.selected]
 
 func saveToMath():
-	m.maths[mathsOptions.selected] = math.new(m.m.varNames,m.m.varVal,m.m.calculation,nameBox.text)
+	m.maths[mathsOptions.selected] = m.m
 	updateMathsList()
 
 func saveNewMath():
-	m.maths.append(math.new(m.m.varNames,m.m.varVal,m.m.calculation,nameBox.text))
+	m.m.name = nameBox.text
+	m.maths.append(retMath(m.m))
 	updateMathsList()
 
 #helper functions

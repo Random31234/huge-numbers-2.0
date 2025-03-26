@@ -34,7 +34,8 @@ func _ready() -> void:
 	#be.append(Big.new(1,3))
 	#vale.varVal = b
 	#maths.append(vale)
-	m = math.new([],[],"","")
+	m = math.new()
+	m.resource_local_to_scene = true
 	tempVar1 = Big.new(0,0)
 	tempVar2 = Big.new(0,0)
 	tempVar3 = Big.new(0,0)

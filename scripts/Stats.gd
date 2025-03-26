@@ -26,7 +26,8 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-
+func _process(delta: float) -> void:
+	pass
 
 
 
@@ -34,7 +35,6 @@ func _ready() -> void:
 func swapper(id1:int,id2:int):
 	var v:Big
 	
-	@warning_ignore("shadowed_variable_base_class")
 	var name:String
 	
 	name =names[id1]
@@ -91,13 +91,13 @@ func swapFunction(i:int):
 
 
 func appendStat(b:Big,n:String):
-	if(maths.searchStringInArrayB(maths.keywords,n) ):
+	if(maths.searchStringInArray(maths.keywords,n) ):
 		errorBox.text +='\n'+"Error name for new stat matches keyword, please use a different name"
 		return
-	if(maths.searchStringInArrayB(names,n)):
+	if(maths.searchStringInArray(names,n)):
 		errorBox.text +='\n'+"Error, name for new stat matches an existing stat name, please use a different name"
 		return
-	if(maths.searchStringInArrayB(maths.m.varNames,n)):
+	if(maths.searchStringInArray(maths.m.varNames,n)):
 		
 		errorBox.text +='\n'+ "Error, name for new matches an existing math's variable name, please refrain from creating a stat with the name of an existing variable."
 		return
@@ -117,22 +117,16 @@ func manipulateStat(index:int,funcIndex:int,b:Big):
 		
 		
 		if(funcIndex == 0):
-			@warning_ignore("static_called_on_instance")
 			values[index]=b.add(b,values[index])
 		if(funcIndex == 1):
-			@warning_ignore("static_called_on_instance")
 			values[index]=b.subtract(values[index],b)
 		if(funcIndex == 2):
-			@warning_ignore("static_called_on_instance")
 			values[index]=b.multiply(b,values[index])
 		if(funcIndex == 3):
-			@warning_ignore("static_called_on_instance")
 			values[index]=b.divide(values[index],b)
 		if(funcIndex == 4):
-			@warning_ignore("static_called_on_instance")
 			values[index]=b.power(values[index],b)
 		if(funcIndex == 5):
-			@warning_ignore("static_called_on_instance")
 			values[index]=b.power(values[index], b.divide(1,b))
 		if(funcIndex == 6):
 			values[index]=b

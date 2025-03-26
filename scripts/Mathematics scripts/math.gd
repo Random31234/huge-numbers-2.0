@@ -5,11 +5,10 @@ class_name math
 @export var calculation:String
 @export var name:String
 # Called when the node enters the scene tree for the first time.
-func _init(names:Array[String], val:Array[Big], calculations:String,nameO:String) -> void:
+func _ready(names:Array[String], val:Array[Big], calculations:String) -> void:
 	varNames = names
 	varVal = val
 	calculation = calculations
-	name = nameO
 
 
 
