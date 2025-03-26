@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bsvg48syefxe0"]
+[gd_scene load_steps=27 format=3 uid="uid://bsvg48syefxe0"]
 
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="1_7y165"]
 [ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
@@ -18,6 +18,9 @@
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/Calculations signals system/calculationLegacyInput.gd" id="12_exr4d"]
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/Calculations signals system/calculationInputNew.gd" id="13_wpl6n"]
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/Calculations signals system/calculationsNew.gd" id="14_ja5hq"]
+[ext_resource type="Script" path="res://scripts/textEditAutoUpdater.gd" id="17_32msq"]
+[ext_resource type="Script" path="res://scripts/Save systems/saveSheet.gd" id="17_c7sd8"]
+[ext_resource type="Script" path="res://scripts/Save systems/saveMath.gd" id="18_7kus2"]
 
 [sub_resource type="Resource" id="Resource_36vgc"]
 script = ExtResource("4_kxll6")
@@ -86,7 +89,7 @@ maths = NodePath("../math Storage Node")
 script = ExtResource("2_0oss8")
 maths = Array[ExtResource("4_uvtnh")]([SubResource("Resource_avi8q")])
 stat = NodePath("../stat Storage Node")
-keywords = Array[String](["tempvar1", "tempvar2", "tempvar3", "tempvar4", "tempvar5", "input", "execute", "print", "{", "}", ">=", "<=", "==", "<", ">", "+", "-", "*", "/", "^", "√", "~", "=", "end"])
+keywords = Array[String](["tempvar1", "tempvar2", "tempvar3", "tempvar4", "tempvar5", "input", "execute", "print", "{", "}", ">=", "<=", "==", "<", ">", "+", "-", "*", "/", "^", "√", "~", "=", "end", ""])
 textBox = NodePath("../Print node/TextEdit")
 
 [node name="stats scroll container" type="ScrollContainer" parent="."]
@@ -112,7 +115,7 @@ layout_mode = 0
 offset_left = 342.0
 offset_right = 1152.0
 offset_bottom = 648.0
-current_tab = 2
+current_tab = 1
 
 [node name="Edit stats" type="Control" parent="TabContainer"]
 visible = false
@@ -343,7 +346,6 @@ text = "Press to apply effect
 "
 
 [node name="maths" type="Control" parent="TabContainer"]
-visible = false
 layout_mode = 2
 script = ExtResource("10_jxg4m")
 metadata/_tab_index = 1
@@ -729,157 +731,181 @@ layout_mode = 0
 offset_top = 296.0
 offset_right = 512.0
 offset_bottom = 616.0
+script = ExtResource("17_32msq")
 
 [node name="Save" type="Control" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="maths" type="Control" parent="TabContainer/Save"]
+[node name="sheets" type="Control" parent="TabContainer/Save" node_paths=PackedStringArray("s", "m")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("17_c7sd8")
+s = NodePath("../../../stat Storage Node")
+m = NodePath("../../../math Storage Node")
 
-[node name="maths selector" type="OptionButton" parent="TabContainer/Save/maths"]
-layout_mode = 0
+[node name="load sheet" type="Button" parent="TabContainer/Save/sheets"]
+modulate = Color(0.501961, 1, 1, 1)
+offset_left = 192.0
+offset_top = 24.0
+offset_right = 320.0
+offset_bottom = 56.0
+text = "Load sheet"
+
+[node name="save to new sheet" type="Button" parent="TabContainer/Save/sheets"]
+modulate = Color(0.501961, 1, 0.501961, 1)
+offset_left = 62.0
+offset_top = 88.0
+offset_right = 318.0
+offset_bottom = 152.0
+text = "Save to
+new sheet"
+
+[node name="delete sheet" type="Button" parent="TabContainer/Save/sheets"]
+modulate = Color(1, 0, 0, 1)
+offset_left = 63.0
+offset_top = 24.0
+offset_right = 191.0
+offset_bottom = 56.0
+text = "Delete sheet"
+
+[node name="sheets selector" type="OptionButton" parent="TabContainer/Save/sheets"]
 offset_left = 325.0
-offset_top = 117.0
+offset_top = 24.0
 offset_right = 549.0
-offset_bottom = 149.0
+offset_bottom = 56.0
 
-[node name="maths name" type="TextEdit" parent="TabContainer/Save/maths"]
-layout_mode = 0
+[node name="sheets name" type="TextEdit" parent="TabContainer/Save/sheets"]
 offset_left = 323.0
-offset_top = 152.0
+offset_top = 88.0
 offset_right = 547.0
-offset_bottom = 215.0
+offset_bottom = 152.0
+placeholder_text = "Type name of sheet"
+
+[node name="Save sheet" type="Button" parent="TabContainer/Save/sheets"]
+modulate = Color(1, 1, 0.501961, 1)
+offset_left = 554.0
+offset_top = 24.0
+offset_right = 682.0
+offset_bottom = 56.0
+text = "Save to sheet"
+
+[node name="Import sheet" type="Button" parent="TabContainer/Save/sheets"]
+modulate = Color(0.501961, 0.752941, 1, 1)
+offset_left = 682.0
+offset_top = 24.0
+offset_right = 810.0
+offset_bottom = 56.0
+text = "Import sheet
+"
+
+[node name="Import_exportBox" type="TextEdit" parent="TabContainer/Save/sheets"]
+custom_minimum_size = Vector2(256, 64)
+offset_left = 554.0
+offset_top = 88.0
+offset_right = 810.0
+offset_bottom = 152.0
+
+[node name="save to new sheet2" type="Button" parent="TabContainer/Save/sheets"]
+modulate = Color(0.501961, 1, 0.501961, 1)
+offset_left = 554.0
+offset_top = 154.0
+offset_right = 810.0
+offset_bottom = 218.0
+text = "Export sheet to
+ clipboard
+"
+
+[node name="maths" type="Control" parent="TabContainer/Save" node_paths=PackedStringArray("m", "s", "iEB", "nameBox")]
+layout_mode = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("18_7kus2")
+m = NodePath("../../../math Storage Node")
+s = NodePath("../../../stat Storage Node")
+iEB = NodePath("import_exportBox mathh")
+nameBox = NodePath("maths name")
 
 [node name="load maths" type="Button" parent="TabContainer/Save/maths"]
 modulate = Color(0.501961, 1, 1, 1)
 layout_mode = 0
-offset_left = 226.0
-offset_top = 121.0
-offset_right = 319.0
-offset_bottom = 153.0
+offset_left = 192.0
+offset_top = 256.0
+offset_right = 320.0
+offset_bottom = 288.0
 text = "Load math"
 
 [node name="save to new math" type="Button" parent="TabContainer/Save/maths"]
 modulate = Color(0.501961, 1, 0.501961, 1)
 layout_mode = 0
-offset_left = 117.0
-offset_top = 155.0
+offset_left = 62.0
+offset_top = 320.0
 offset_right = 318.0
-offset_bottom = 218.0
+offset_bottom = 384.0
 text = "Save to
 new math"
 
 [node name="delete math" type="Button" parent="TabContainer/Save/maths"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 117.0
-offset_top = 120.0
-offset_right = 223.0
-offset_bottom = 151.0
+offset_left = 63.0
+offset_top = 256.0
+offset_right = 191.0
+offset_bottom = 288.0
 text = "Delete math"
+
+[node name="maths selector" type="OptionButton" parent="TabContainer/Save/maths"]
+layout_mode = 0
+offset_left = 325.0
+offset_top = 256.0
+offset_right = 549.0
+offset_bottom = 288.0
+
+[node name="maths name" type="TextEdit" parent="TabContainer/Save/maths"]
+layout_mode = 0
+offset_left = 323.0
+offset_top = 320.0
+offset_right = 547.0
+offset_bottom = 384.0
 
 [node name="Save calculation" type="Button" parent="TabContainer/Save/maths"]
 modulate = Color(1, 1, 0.501961, 1)
 layout_mode = 0
 offset_left = 554.0
-offset_top = 116.0
+offset_top = 256.0
 offset_right = 682.0
-offset_bottom = 148.0
+offset_bottom = 288.0
 text = "Save to math"
 
 [node name="load calculation" type="Button" parent="TabContainer/Save/maths"]
 modulate = Color(0.501961, 0.752941, 1, 1)
 layout_mode = 0
 offset_left = 682.0
-offset_top = 116.0
+offset_top = 256.0
 offset_right = 810.0
-offset_bottom = 148.0
+offset_bottom = 288.0
 text = "import math
 "
 
-[node name="Save maths display" type="TextEdit" parent="TabContainer/Save/maths"]
+[node name="import_exportBox mathh" type="TextEdit" parent="TabContainer/Save/maths"]
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 0
 offset_left = 554.0
-offset_top = 151.0
+offset_top = 320.0
 offset_right = 810.0
-offset_bottom = 215.0
+offset_bottom = 384.0
 
-[node name="sheets" type="Control" parent="TabContainer/Save"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Save stats" type="Button" parent="TabContainer/Save/sheets"]
-modulate = Color(1, 1, 0.501961, 1)
-layout_mode = 0
-offset_left = 562.0
-offset_top = 13.0
-offset_right = 690.0
-offset_bottom = 45.0
-text = "Save to sheet"
-
-[node name="Import sheet" type="Button" parent="TabContainer/Save/sheets"]
-modulate = Color(0.501961, 0.752941, 1, 1)
-layout_mode = 0
-offset_left = 690.0
-offset_top = 13.0
-offset_right = 818.0
-offset_bottom = 45.0
-text = "import sheet"
-
-[node name="Save stats display" type="TextEdit" parent="TabContainer/Save/sheets"]
-custom_minimum_size = Vector2(256, 64)
-layout_mode = 0
-offset_left = 562.0
-offset_top = 47.0
-offset_right = 818.0
-offset_bottom = 111.0
-
-[node name="Save selector" type="OptionButton" parent="TabContainer/Save/sheets"]
-layout_mode = 0
-offset_left = 331.0
-offset_top = 14.0
-offset_right = 555.0
-offset_bottom = 46.0
-
-[node name="StatsFileName" type="TextEdit" parent="TabContainer/Save/sheets"]
-layout_mode = 0
-offset_left = 329.0
-offset_top = 49.0
-offset_right = 553.0
-offset_bottom = 112.0
-
-[node name="load sheet" type="Button" parent="TabContainer/Save/sheets"]
-modulate = Color(0.501961, 1, 1, 1)
-layout_mode = 0
-offset_left = 235.0
-offset_top = 15.0
-offset_right = 328.0
-offset_bottom = 47.0
-text = "Load sheet"
-
-[node name="Save to new sheet" type="Button" parent="TabContainer/Save/sheets"]
+[node name="Export math" type="Button" parent="TabContainer/Save/maths"]
 modulate = Color(0.501961, 1, 0.501961, 1)
-layout_mode = 0
-offset_left = 126.0
-offset_top = 49.0
-offset_right = 327.0
-offset_bottom = 112.0
-text = "Save to
- new sheet"
-
-[node name="Delete sheet" type="Button" parent="TabContainer/Save/sheets"]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 0
-offset_left = 126.0
-offset_top = 14.0
-offset_right = 232.0
-offset_bottom = 45.0
-text = "Delete sheet"
+offset_left = 554.0
+offset_top = 385.0
+offset_right = 810.0
+offset_bottom = 449.0
+text = "Export math to
+clipboard"
 
 [node name="Options" type="Control" parent="TabContainer"]
 visible = false
@@ -980,16 +1006,18 @@ text = "Enable swapping of stat order"
 [connection signal="button_down" from="TabContainer/maths/calculations/Legacy input system2/calculation button" to="TabContainer/maths/calculations/Legacy input system2" method="pressed"]
 [connection signal="input" from="TabContainer/maths/calculations/input system" to="TabContainer/maths/calculations" method="calc"]
 [connection signal="button_down" from="TabContainer/maths/calculations/input system/calculation button" to="TabContainer/maths/calculations/input system" method="pressed"]
+[connection signal="text_changed" from="TabContainer/maths/calculations/TextEdit" to="TabContainer/maths/calculations/TextEdit" method="updateVal"]
+[connection signal="updateValue" from="TabContainer/maths/calculations/TextEdit" to="TabContainer/maths" method="updateCalculations"]
+[connection signal="button_down" from="TabContainer/Save/sheets/load sheet" to="." method="loadMaths"]
+[connection signal="button_down" from="TabContainer/Save/sheets/save to new sheet" to="." method="saveNewMath"]
+[connection signal="button_down" from="TabContainer/Save/sheets/delete sheet" to="." method="deleteMaths"]
+[connection signal="button_down" from="TabContainer/Save/sheets/Save sheet" to="." method="saveMath"]
+[connection signal="button_down" from="TabContainer/Save/sheets/Import sheet" to="." method="importMath"]
+[connection signal="button_down" from="TabContainer/Save/sheets/save to new sheet2" to="." method="saveNewMath"]
 [connection signal="button_down" from="TabContainer/Save/maths/load maths" to="." method="loadMaths"]
 [connection signal="button_down" from="TabContainer/Save/maths/save to new math" to="." method="saveNewMath"]
 [connection signal="button_down" from="TabContainer/Save/maths/delete math" to="." method="deleteMaths"]
-[connection signal="button_down" from="TabContainer/Save/maths/Save calculation" to="." method="saveMath"]
-[connection signal="button_down" from="TabContainer/Save/maths/load calculation" to="." method="importMath"]
-[connection signal="button_down" from="TabContainer/Save/sheets/Save stats" to="." method="saveStats"]
-[connection signal="button_down" from="TabContainer/Save/sheets/Import sheet" to="." method="importSheet"]
-[connection signal="button_down" from="TabContainer/Save/sheets/load sheet" to="." method="loadsheet"]
-[connection signal="button_down" from="TabContainer/Save/sheets/Save to new sheet" to="." method="savenewsheet"]
-[connection signal="button_down" from="TabContainer/Save/sheets/Delete sheet" to="." method="deletesheet"]
+[connection signal="button_down" from="TabContainer/Save/maths/Export math" to="TabContainer/Save/maths" method="exportToClipboard"]
 [connection signal="item_selected" from="TabContainer/Options/OptionButton" to="TabContainer/Options/OptionButton" method="TopicSelected"]
 [connection signal="toggled" from="TabContainer/Options/Swappable" to="stat Storage Node" method="swappableT"]
 [connection signal="toggled" from="TabContainer/Options/Swappable" to="math Storage Node" method="swappableT"]

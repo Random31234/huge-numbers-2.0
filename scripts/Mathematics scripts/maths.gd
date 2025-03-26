@@ -23,7 +23,7 @@ var braceCounter:int
 
 
 
-signal vars(b:Array[Big],n:Array[String],s:bool)
+signal vars(b:Array[Big],n:Array[String],s:bool,c:String)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#test function
@@ -54,7 +54,7 @@ func searchForMath(s:String)->math:
 
 func updateVarOptions():
 	
-	emit_signal("vars",m.varVal,m.varNames,swappable)
+	emit_signal("vars",m.varVal,m.varNames,swappable,m.calculation)
 
 
 func setVariable(d:Big,n:String,i:int):
