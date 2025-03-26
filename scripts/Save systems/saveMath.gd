@@ -7,6 +7,8 @@ extends Node
 
 
 func exportToClipboard():
+	
+	
 	iEB.text = createDictionary()
 	
 	DisplayServer.clipboard_set(createDictionary())
@@ -18,7 +20,19 @@ func importFromIEB():
 
 #helper functions
 func import(s:String):
-	pass
+	
+	var d = JSON.parse_string(s)
+	m.m.calculation = d["calc"]
+	m.m.name = d["name"]
+	m.m.varNames.clear()
+	m.m.varVal.clear()
+	for z in d["variables"]:
+		print(z)
+		m.m.varNames.append(z)
+		m.m.varVal.append(d["variables"][z])
+	
+	
+	m
 
 func createDictionary():
 	var d:Dictionary

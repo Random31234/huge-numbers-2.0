@@ -24,6 +24,7 @@ var braceCounter:int
 
 
 signal vars(b:Array[Big],n:Array[String],s:bool)
+signal calcUpdate(s:String)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#test function
@@ -331,7 +332,8 @@ func comparator(t:Big,s:String,x:String):
 				return true
 	return false
 
-
+func setMath(s:String):
+	m.calculation = s
 
 
 
