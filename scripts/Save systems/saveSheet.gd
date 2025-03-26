@@ -6,6 +6,11 @@ extends Node
 @export var nameBox:TextEdit
 @export var sheetsOptions:OptionButton
 @export var mathsSave:Node
+const savePath:String = "user://HugeNumbersSheets/"
+
+func _ready() -> void:
+	pass
+
 
 func exportToClipboard():
 	
@@ -16,6 +21,9 @@ func exportToClipboard():
 
 func importFromIEB():
 	import(iEB.text)
+
+
+#the file manipulations
 
 func deleteSheet():
 	pass
@@ -29,7 +37,15 @@ func saveToSheet():
 
 
 func saveNewSheet():
-	pass
+	DirAccess.make_dir_absolute(savePath)
+	
+	var fil = FileAccess.open(savePath+nameBox.text+".txt",FileAccess.WRITE)
+	fil.store_line(createDictionary())
+
+
+
+
+
 
 func import(e:String):
 	
@@ -68,7 +84,7 @@ func updateSheetsList():
 	pass
 	for z in m.maths:
 		pass
-
+#creates a dictionary in string form
 func createDictionary():
 	var d:Dictionary
 	var x
