@@ -1010,7 +1010,7 @@ text = "Enable swapping of stat order"
 [connection signal="button_down" from="TabContainer/Save/maths/import calculation" to="TabContainer/Save/maths" method="importFromIEB"]
 [connection signal="button_down" from="TabContainer/Save/maths/export math" to="TabContainer/Save/maths" method="exportToClipboard"]
 [connection signal="button_down" from="TabContainer/Save/sheets/Save stats" to="." method="saveStats"]
-[connection signal="button_down" from="TabContainer/Save/sheets/Import sheet" to="." method="importSheet"]
+[connection signal="button_down" from="TabContainer/Save/sheets/Import sheet" to="TabContainer/Save/sheets" method="importFromIEB"]
 [connection signal="button_down" from="TabContainer/Save/sheets/load sheet" to="." method="loadsheet"]
 [connection signal="button_down" from="TabContainer/Save/sheets/Save to new sheet" to="." method="savenewsheet"]
 [connection signal="button_down" from="TabContainer/Save/sheets/Delete sheet" to="." method="deletesheet"]
