@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://bsvg48syefxe0"]
+[gd_scene load_steps=22 format=3 uid="uid://bsvg48syefxe0"]
 
 [ext_resource type="Script" path="res://scripts/editStats/Stats.gd" id="1_7y165"]
 [ext_resource type="Script" path="res://scripts/print_node.gd" id="1_jx5fe"]
 [ext_resource type="Script" path="res://scripts/enablerDisabler.gd" id="1_pq12d"]
 [ext_resource type="Script" path="res://scripts/Mathematics scripts/maths.gd" id="2_0oss8"]
+[ext_resource type="Script" path="res://scripts/termination_button.gd" id="2_fi7rg"]
 [ext_resource type="Script" path="res://scripts/documentation.gd" id="2_xlgaw"]
 [ext_resource type="Script" path="res://scripts/editStats/editStats.gd" id="5_scl5u"]
 [ext_resource type="Script" path="res://scripts/editStats/CreateStatScripts/createStatLegacy.gd" id="6_p6lff"]
@@ -59,6 +60,7 @@ offset_left = 1120.0
 offset_right = 1152.0
 offset_bottom = 32.0
 text = "X"
+script = ExtResource("2_fi7rg")
 
 [node name="stat Storage Node" type="Node" parent="." node_paths=PackedStringArray("statBox", "errorBox", "maths")]
 script = ExtResource("1_7y165")
@@ -945,7 +947,7 @@ offset_bottom = 92.0
 text = "Enable swapping of stat order"
 
 [connection signal="button_down" from="Print node/Button" to="Print node" method="displayStats"]
-[connection signal="button_down" from="Termination button" to="." method="terminateSession"]
+[connection signal="button_down" from="Termination button" to="Termination button" method="terminateSession"]
 [connection signal="updateList" from="stat Storage Node" to="TabContainer/Edit stats" method="updateManipulateStatsOptions"]
 [connection signal="calcUpdate" from="math Storage Node" to="TabContainer/maths" method="displayCalc"]
 [connection signal="vars" from="math Storage Node" to="TabContainer/maths" method="varUpdates"]
