@@ -308,6 +308,8 @@ func doStep(t:Big,s:String,x:String):
 			print(getBig(x).toScientific())
 			return t
 			
+		
+		
 	s =""
 	
 
