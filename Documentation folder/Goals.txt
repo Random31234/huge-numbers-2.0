@@ -32,3 +32,16 @@ Current goals:
 		
 		#testing sheet
 		{"maths":{"u":{"b":"4","calc":"asdada"}},"stats":{"y":"2"}}
+		
+		
+	
+	
+	#complete so far
+	
+	Now new goals need to be in place to move from prototype, to 2.0
+	
+		Neeed to finish legacy calculation system
+		make base calc box easier to notice
+		Rearrange save system to make it harder to accidentally press the wrong button colors were not enough
+		Add modulo system to make rounding easier.
+		make brand new rounding system. (optional)
