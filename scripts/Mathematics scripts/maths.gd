@@ -315,7 +315,7 @@ func doStep(t:Big,s:String,x:String):
 			return t
 		
 		if(s == "modulo"):
-			t = t.mod(x)
+			t = t.modulo(t,getBig(x))
 			print("modulo result: " + t.toScientific())
 			return t
 	s =""
