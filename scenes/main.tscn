@@ -476,6 +476,7 @@ custom_minimum_size = Vector2(192, 2560)
 layout_mode = 2
 
 [node name="calculations legacy" type="Control" parent="TabContainer/maths" node_paths=PackedStringArray("mathBox")]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -706,6 +707,7 @@ layout_mode = 0
 offset_top = 296.0
 offset_right = 512.0
 offset_bottom = 616.0
+placeholder_text = "Input calculations here"
 script = ExtResource("17_32msq")
 
 [node name="Save" type="Control" parent="TabContainer"]
