@@ -27,6 +27,11 @@ signal vars(b:Array[Big],n:Array[String],s:bool)
 signal calcUpdate(s:String)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	var lig = Big.new(5,0)
+	var li = 2
+	var l = Big.new(1,0)
+	print(l.modulo(lig,li).toScientific())
 	#test function
 	#var vale =math.new()
 	#var be:Array[Big]
@@ -274,6 +279,7 @@ func calcThroughSteps(g:PackedStringArray):
 
 func doStep(t:Big,s:String,x:String):
 	print("Doing step")
+	print(t.toScientific() + ":t, " + '\n')
 	#work on neutralizer equations
 	if(checkBig(x) == false):
 		return t
@@ -307,7 +313,11 @@ func doStep(t:Big,s:String,x:String):
 			print("setting equal to " + t.toScientific())
 			print(getBig(x).toScientific())
 			return t
-			
+		
+		if(s == "modulo"):
+			t = t.mod(x)
+			print("modulo result: " + t.toScientific())
+			return t
 	s =""
 	
 

@@ -385,7 +385,7 @@ static func root(x: Big) -> Big:
 static func modulo(x, y) -> Big:
 	var result := Big.new(x.mantissa, x.exponent)
 	y = Big._typeCheck(y)
-	var big = { "mantissa": x.mantissa, "exponent": x.exponent }
+	var big = Big.new(x.mantissa,x.exponent)
 	Big.divide(result, y)
 	Big.roundDown(result)
 	Big.multiply(result, y)
