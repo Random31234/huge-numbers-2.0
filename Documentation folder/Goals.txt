@@ -43,5 +43,8 @@ Current goals:
 		Neeed to finish legacy calculation system
 		make base calc box easier to notice (complete and patched)
 		Rearrange save system to make it harder to accidentally press the wrong button colors were not enough
-		Add modulo system to make rounding easier. Complete, and patched
+		The way to rearrange the save system shall be to move the buttons above and below the save systems accordingly, this should give space
+		
+		Add modulo system to make rounding easier. (Complete, and patched)
+		Work on checks to insure certain save bugs are not created with saves and maths.
 		make brand new rounding system. (optional.... not necessary or useful)
