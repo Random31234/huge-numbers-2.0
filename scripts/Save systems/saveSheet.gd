@@ -6,6 +6,7 @@ extends Node
 @export var nameBox:TextEdit
 @export var sheetsOptions:OptionButton
 @export var mathsSave:Node
+@export var textBox:TextEdit
 const savePath:String = "user://HugeNumbersSheets/"
 const sheetNamesFile:String = "user://Names.txt"
 @export var sheetNames:PackedStringArray
@@ -59,7 +60,16 @@ func saveToSheet():
 
 func saveNewSheet():
 	DirAccess.make_dir_absolute(savePath)
-	
+	if(m.searchStringInArrayB(sheetNames,nameBox.text)):
+		
+		textBox.text += "Error, sheet name is invalid"
+		return
+	if(nameBox.text == ""):
+		textBox.text += "Error, do not use an empty name for maths."
+		return
+	if(nameBox.text.contains(" ")):
+		textBox.text += "Do not add spaces to math name"
+		return
 	var fil = FileAccess.open(savePath+nameBox.text+".txt",FileAccess.WRITE)
 	fil.store_string(createDictionary())
 	sheetNames.append(nameBox.text)

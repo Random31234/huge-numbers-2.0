@@ -5,7 +5,7 @@ extends Node
 @export var iEB:TextEdit
 @export var nameBox:TextEdit
 @export var mathsOptions:OptionButton
-
+@export var textBox:TextEdit
 func exportToClipboard():
 	
 	
@@ -31,6 +31,19 @@ func saveToMath():
 	updateMathsList()
 
 func saveNewMath():
+	
+	var z = 0
+	for x in m.maths:
+		if(x.name == nameBox.text):
+			z +=1
+			textBox.text += "Error, use a different math name"
+			
+		if(nameBox.text == ""):
+			textBox.text += "Error, do not use an empty name for maths."
+		if(nameBox.text.contains(" ")):
+			textBox.text += "Do not add spaces to math name"
+	if(z >0):
+		return
 	m.maths.append(math.new(m.m.varNames,m.m.varVal,m.m.calculation,nameBox.text))
 	updateMathsList()
 
