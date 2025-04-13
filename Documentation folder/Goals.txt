@@ -38,13 +38,13 @@ Current goals:
 	
 	#complete so far
 	
-	Now new goals need to be in place to move from prototype, to 2.0
+	Now new goals need to be in place to move from 2.01 to 2.0.3
 	
-		Neeed to finish legacy calculation system
+		Neeed to finish legacy calculation system (optional for this version)
 		make base calc box easier to notice (complete and patched)
 		Rearrange save system to make it harder to accidentally press the wrong button colors were not enough
-		The way to rearrange the save system shall be to move the buttons above and below the save systems accordingly, this should give space
-		
+		The way to rearrange the save system shall be to move the buttons above and below the save systems accordingly, this should give space 
+		(Previous part complete)
 		Add modulo system to make rounding easier. (Complete, and patched)
-		Work on checks to insure certain save bugs are not created with saves and maths.
+		Work on checks to insure certain save bugs are not created with saves and maths. (working on.)
 		make brand new rounding system. (optional.... not necessary or useful)
