@@ -46,5 +46,5 @@ Current goals:
 		The way to rearrange the save system shall be to move the buttons above and below the save systems accordingly, this should give space 
 		(Previous part complete)
 		Add modulo system to make rounding easier. (Complete, and patched)
-		Work on checks to insure certain save bugs are not created with saves and maths. (working on.)
+		Work on checks to insure certain save bugs are not created with saves and maths. (working on.) (complete)
 		make brand new rounding system. (optional.... not necessary or useful)
