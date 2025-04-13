@@ -757,10 +757,10 @@ text = "Save to new math"
 [node name="delete math" type="Button" parent="TabContainer/Save/maths"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 302.0
-offset_top = 388.0
-offset_right = 526.0
-offset_bottom = 420.0
+offset_left = 280.0
+offset_top = 585.0
+offset_right = 504.0
+offset_bottom = 617.0
 text = "Delete math"
 
 [node name="Save calculation" type="Button" parent="TabContainer/Save/maths"]
@@ -846,9 +846,9 @@ offset_bottom = 324.0
 [node name="Sheet file name" type="TextEdit" parent="TabContainer/Save/sheets"]
 layout_mode = 0
 offset_left = 554.0
-offset_top = 33.0
+offset_top = 32.0
 offset_right = 810.0
-offset_bottom = 96.0
+offset_bottom = 95.0
 placeholder_text = "New sheet name goes here"
 
 [node name="load sheet" type="Button" parent="TabContainer/Save/sheets"]
@@ -864,27 +864,24 @@ text = "Load sheet"
 modulate = Color(0.501961, 1, 0.501961, 1)
 layout_mode = 0
 offset_left = 554.0
-offset_top = 1.0
 offset_right = 810.0
-offset_bottom = 33.0
+offset_bottom = 32.0
 text = "Save to new sheet"
 
 [node name="Delete sheet" type="Button" parent="TabContainer/Save/sheets"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 302.0
-offset_top = 192.0
-offset_right = 526.0
-offset_bottom = 224.0
+offset_left = 280.0
+offset_right = 504.0
+offset_bottom = 32.0
 text = "Delete sheet"
 
 [node name="export sheet" type="Button" parent="TabContainer/Save/sheets"]
 modulate = Color(0.501961, 1, 0.501961, 1)
 custom_minimum_size = Vector2(256, 32)
 layout_mode = 0
-offset_top = 2.0
 offset_right = 256.0
-offset_bottom = 34.0
+offset_bottom = 32.0
 text = "Export sheet to clipboard"
 
 [node name="Options" type="Control" parent="TabContainer"]
