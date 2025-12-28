@@ -48,3 +48,8 @@ Current goals:
 		Add modulo system to make rounding easier. (Complete, and patched)
 		Work on checks to insure certain save bugs are not created with saves and maths. (working on.) (complete)
 		make brand new rounding system. (optional.... not necessary or useful)
+
+
+	#New tasks:
+		Work on some quality of life features like making sure the addition and subtraction systems do not change upon performance alone
+		

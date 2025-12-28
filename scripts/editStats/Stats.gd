@@ -109,6 +109,8 @@ func appendStat(b:Big,n:String):
 	updateStats()
 	emit_signal("updateList",names)
 
+
+#this function is called when stats are  being changed directly.
 func manipulateStat(index:int,funcIndex:int,b:Big):
 	
 	print(index)
