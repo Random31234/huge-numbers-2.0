@@ -55,7 +55,6 @@ func saveToSheet():
 	DirAccess.make_dir_absolute(savePath)
 	var fil = FileAccess.open(savePath+sheetsOptions.text+".txt",FileAccess.WRITE)
 	fil.store_string(createDictionary())
-	sheetNames.append(nameBox.text)
 	updateSheetNames()
 
 func saveNewSheet():
