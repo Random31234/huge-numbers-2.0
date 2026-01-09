@@ -276,7 +276,7 @@ func calcThroughSteps(g:PackedStringArray):
 
 
 #helper functions
-
+#
 func doStep(t:Big,s:String,x:String):
 	print("Doing step")
 	print(t.toScientific() + ":t, " + '\n')

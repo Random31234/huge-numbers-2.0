@@ -52,4 +52,6 @@ Current goals:
 
 	#New tasks:
 		Work on some quality of life features like making sure the addition and subtraction systems do not change upon performance alone
+		Done
 		
+		Now The save system could use a few quality of life fixes but a bug was patched
